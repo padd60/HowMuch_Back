@@ -27,6 +27,8 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class SampleController {
 	
+	//new junghwan branch
+	
 	@Setter(onMethod_ = @Autowired)
 	private SampleService service;
 	
