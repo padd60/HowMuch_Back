@@ -53,9 +53,9 @@ public class SampleController {
 	
 	@PostMapping(value="/update")
 	public @ResponseBody SampleVO update(@RequestBody SampleVO vo) {
-		
 		log.info(vo.getName());
 		log.info(vo.getAge());
+		
 		
 		return service.update(vo);
 	}
@@ -76,5 +76,7 @@ public class SampleController {
 		return service.delete(id);
 		
 	}
+	
+	
 	
 }

@@ -1,5 +1,7 @@
 package com.howmuch.domain;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -9,4 +11,6 @@ public class MemberVO {
 	private String nick;
 	private String pw;
 	private int point;
+	
+	private List<AuthVO> authList;
 }
