@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Meber Page</h1>
+	<h1>Logout Page</h1>
+	
+	<form action="/customLogout" method="post">
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
+		<button>Logout</button>
+	</form>
 </body>
 </html>

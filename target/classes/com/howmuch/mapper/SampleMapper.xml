@@ -12,7 +12,7 @@
 	</select>
 	
 	<update id="updateData">
-		update sample set name=#{name}
+		update sample set name=#{name}, age=#{age} where id=#{id}
 	</update>
 	
 	<insert id="register">

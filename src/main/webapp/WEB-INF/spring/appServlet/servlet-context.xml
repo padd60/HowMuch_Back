@@ -24,6 +24,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.howmuch.controller" />
+	<!-- <context:component-scan base-package="com.howmuch.security" /> -->
 	
 	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled" />
 	

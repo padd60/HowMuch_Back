@@ -9,6 +9,9 @@ import org.springframework.security.core.userdetails.User;
 
 import com.howmuch.domain.MemberVO;
 
+import lombok.Getter;
+
+@Getter
 public class CustomUser extends User {
 	
 	private static final long serialVersionUID = 1L;

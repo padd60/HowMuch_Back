@@ -10,5 +10,6 @@
 </h1>
 
 <P>  Sumin's Branch </P>
+<a href="/member">Welcome</a>
 </body>
 </html>

@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j;
 public class MemberTests {
 	
 	@Setter(onMethod_ = @Autowired)
-	private PasswordEncoder pwencoder;
+	private BCryptPasswordEncoder pwencoder;
 	
 	@Setter(onMethod_ = @Autowired)
 	private DataSource ds;
@@ -42,22 +42,22 @@ public class MemberTests {
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
 				
-				pstmt.setString(3, pwencoder.encode("pw" + i));
+				pstmt.setString(3, pwencoder.encode("pw4" + i));
 				
 				if(i < 2) {
-					pstmt.setString(1, "user2" + i + "@naver.com");
-					pstmt.setString(2, "user2" + i);
+					pstmt.setString(1, "user4" + i + "@naver.com");
+					pstmt.setString(2, "user4" + i);
 					
 					
 				}
 				else if(i <= 3) {
-					pstmt.setString(1, "manager2" + i + "@naver.com");
-					pstmt.setString(2, "manager2" + i);
+					pstmt.setString(1, "manager4" + i + "@naver.com");
+					pstmt.setString(2, "manager4" + i);
 					
 				}
 				else {
-					pstmt.setString(1, "admin2" + i + "@naver.com");
-					pstmt.setString(2, "admin2" + i);
+					pstmt.setString(1, "admin4" + i + "@naver.com");
+					pstmt.setString(2, "admin4" + i);
 	
 				}
 				pstmt.executeUpdate();
@@ -84,18 +84,18 @@ public class MemberTests {
 				
 				
 				if(i < 2) {
-					pstmt.setString(1, "user2" + i + "@naver.com");
+					pstmt.setString(1, "user4" + i + "@naver.com");
 					pstmt.setString(2, "ROLE_USER");
 					
 					
 				}
 				else if(i <= 3) {
-					pstmt.setString(1, "manager2" + i + "@naver.com");
+					pstmt.setString(1, "manager4" + i + "@naver.com");
 					pstmt.setString(2, "ROLE_MANAGER");
 					
 				}
 				else {
-					pstmt.setString(1, "admin2" + i + "@naver.com");
+					pstmt.setString(1, "admin4" + i + "@naver.com");
 					pstmt.setString(2, "ROLE_ADMIN");
 	
 				}
