@@ -1,11 +1,14 @@
 package com.howmuch.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.howmuch.domain.MemberVO;
+import com.howmuch.domain.RankVO;
 import com.howmuch.mapper.MemberMapper;
 
 import lombok.Setter;
@@ -29,6 +32,22 @@ public class MemberServiceImpl implements MemberService {
 		
 		
 	}
-	
+
+	@Override
+	public List<RankVO> getRankByPosting() {
+		return member.getRankByPosting();
+	}
+
+	@Override
+	public MemberVO read(String email) {
+
+		return member.read(email);
+	}
+
+	@Override
+	public List<MemberVO> getRankByTier() {
+		
+		return member.getRankByTier();
+	}
 
 }

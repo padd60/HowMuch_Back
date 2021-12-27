@@ -15,5 +15,6 @@
 	<p>UserName : <sec:authentication property="principal.username" /></p>
 	<p>AuthoList : <sec:authentication property="principal.member.authList" /></p>
 	<a href="/customLogout">Logout</a>
+	<a href="/myPage">My Page</a>
 </body>
 </html>

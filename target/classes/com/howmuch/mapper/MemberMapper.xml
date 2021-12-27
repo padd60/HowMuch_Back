@@ -34,4 +34,16 @@
 		hm_member mem left outer join hm_member_auth auth on mem.email = auth.email
 		where mem.email = #{email}
 	</select>
+	<select id="getRankByPosting" resultType="com.howmuch.domain.RankVO">
+		select mem.nick as nick, board.blike + board.suggestion as score, count(board.mno) as posting
+		from
+		hm_member mem left join hm_board board on mem.mno = board.mno
+		group by mem.nick, score
+		order by score desc
+		limit 10
+	</select>
+	<select id="getRankByTier" resultType="com.howmuch.domain.MemberVO">
+		select nick, point from hm_member order by point desc limit 10
+	</select>
+	 
 </mapper>
