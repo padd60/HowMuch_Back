@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.howmuch.domain.MemberVO;
+import com.howmuch.domain.Rank2VO;
 import com.howmuch.domain.RankVO;
 import com.howmuch.service.MemberService;
 
@@ -38,19 +38,42 @@ public class MemberController {
 	}
 	
 	// 마이페이지
-//	@GetMapping("/myPage")
-//	@PreAuthorize("isAuthenticated()")
-//	public @ResponseBody List<RankVO> mypage(String email) {
-//		log.info("==========================");
-//		log.info("My Page");
-//		log.info(principal.getName());
-//		
-//		MemberVO vo = service.read(email);
-//		List<RankVO> rvo = service.getRankByPosting();
-//		List<MemberVO> mvo = service.getRankByTier();
-//		
-//		return rvo;
-//		
-//	}
+	@GetMapping("/BoardRank")
+	public @ResponseBody List<RankVO> rank1() {
+		log.info("==========================");
+		log.info("My Page");
+		
+		List<RankVO> rvo = service.getRankByPosting();
+		
+		return rvo;
+		
+	}
+	
+	// 마이페이지
+	@GetMapping("/TierRank")
+	public @ResponseBody List<Rank2VO> rank2(){
+		
+		log.info("Rank2");
+		List<Rank2VO> rvo = service.getRankByTier();
+		
+		for(Rank2VO vo : rvo) {
+			if(vo.getPoint() < 250) {
+				vo.setTier("Bronze");
+			}
+			else if(vo.getPoint() < 500) {
+				vo.setTier("Silver");
+			}
+			else if(vo.getPoint() < 750) {
+				vo.setTier("Gold");
+			}
+			else if(vo.getPoint() < 1000) {
+				vo.setTier("Platinum");
+			}
+			else {
+				vo.setTier("Diamond");
+			}
+		}
+		return rvo;
+	}
 	
 }

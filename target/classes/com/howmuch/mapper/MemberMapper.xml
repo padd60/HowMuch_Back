@@ -42,7 +42,7 @@
 		order by score desc
 		limit 10
 	</select>
-	<select id="getRankByTier" resultType="com.howmuch.domain.MemberVO">
+	<select id="getRankByTier" resultType="com.howmuch.domain.Rank2VO">
 		select nick, point from hm_member order by point desc limit 10
 	</select>
 	 

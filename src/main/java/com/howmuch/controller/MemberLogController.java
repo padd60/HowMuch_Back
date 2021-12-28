@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.howmuch.domain.MemberVO;
+import com.howmuch.domain.Rank2VO;
 import com.howmuch.domain.RankVO;
 import com.howmuch.service.MemberService;
 
@@ -70,7 +71,7 @@ public class MemberLogController {
 			
 			MemberVO vo = service.read(principal.getName());
 			List<RankVO> rvo = service.getRankByPosting();
-			List<MemberVO> mvo = service.getRankByTier();
+			List<Rank2VO> mvo = service.getRankByTier();
 			
 			if(vo.getPoint() < 250) {
 				model.addAttribute("grade", "Bronze");

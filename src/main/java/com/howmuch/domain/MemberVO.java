@@ -11,6 +11,7 @@ public class MemberVO {
 	private String nick;
 	private String pw;
 	private int point;
+	private String tier;
 	
 	private List<AuthVO> authList;
 }
