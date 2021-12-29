@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.howmuch.domain.MemberVO;
+import com.howmuch.domain.Rank2VO;
 import com.howmuch.domain.RankVO;
 import com.howmuch.mapper.MemberMapper;
 
@@ -45,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> getRankByTier() {
+	public List<Rank2VO> getRankByTier() {
 		
 		return member.getRankByTier();
 	}

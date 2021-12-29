@@ -3,6 +3,7 @@ package com.howmuch.mapper;
 import java.util.List;
 
 import com.howmuch.domain.MemberVO;
+import com.howmuch.domain.Rank2VO;
 import com.howmuch.domain.RankVO;
 
 public interface MemberMapper {
@@ -17,6 +18,6 @@ public interface MemberMapper {
 	public List<RankVO> getRankByPosting();
 	
 	// 등급 랭킹 >> 티어표
-	public List<MemberVO> getRankByTier();
+	public List<Rank2VO> getRankByTier();
 	
 }
