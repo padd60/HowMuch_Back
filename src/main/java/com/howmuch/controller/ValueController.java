@@ -40,19 +40,7 @@ public class ValueController {
 	      
 	      return service.register(pri);
 	   }
-	
-	//	@GetMapping(value="/operation")
-	//		public @ResponseBody List<ValueVO> operation(@RequestParam(value="bno") int bno){
-	//			log.info("operation......"+bno);
-	//		
-	//			return service.operation(bno);
-	//	}
-		@GetMapping(value="/avg")
-		public @ResponseBody List<ValueVO> avg(@RequestParam(value="bno") int bno){
-			log.info("operation......"+bno);
-				
-			return service.avg(bno); 
-		}
+		
 		@GetMapping(value="/log")
 		public @ResponseBody List<LogVO> log(@RequestParam(value="bno") int bno){
 				
@@ -60,9 +48,14 @@ public class ValueController {
 			
 			return service.log(bno);
 		}
+		
 		@GetMapping(value="/cal")
-		public @ResponseBody List<CalculatorVO> min(@RequestParam(value="bno") int bno){
+		public @ResponseBody CalculatorVO cal(@RequestParam(value="bno") int bno){
 			
-			return service.min(bno);
+			CalculatorVO cal = service.cal(bno);
+			
+			cal.setAvg(Math.round(cal.getAvg()));
+			
+			return cal;
 		}
 }

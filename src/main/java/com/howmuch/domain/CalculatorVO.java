@@ -7,6 +7,6 @@ public class CalculatorVO {
 	
 	private int min;
 	private int max;
-	private int avg;
-	private int price;
+	private double avg;
+	
 }

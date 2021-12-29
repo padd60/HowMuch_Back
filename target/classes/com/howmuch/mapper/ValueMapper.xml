@@ -15,20 +15,12 @@
       select * from hm_value
    </select>
    
-<!-- 	<select id="operation" resultType="com.howmuch.domain.ValueVO">
-		select mno,rater,price from hm_value where bno=#{bno}	 
-	</select> -->
-	<select id="avg" resultType="com.howmuch.domain.ValueVO">
-		select bno, sum(price) as price from hm_value where bno=#{bno};	 
-	</select>	
 	<select id="log" resultType="com.howmuch.domain.LogVO">
-		select rater, price, vdate from hm_value where bno=#{bno} order by vdate desc limit 8;
+		select rater, price, vdate from hm_value where bno=#{bno} order by vdate desc limit 8
 	</select>
-	<select id="min" resultType="com.howmuch.domain.CalculatorVO">
-		<!-- select min(price) as min from hm_value where bno=#{bno}; -->
-		select price from(select price, max(price) over() max_g, min(price) over() min_g from hm_value where bno=#{bno}) as min where price = max_g or price=min_g;
+	
+	<select id="cal" resultType="com.howmuch.domain.CalculatorVO">
+		select min(price) as min, max(price) as max, avg(price) as avg from hm_value where bno=#{bno}
 	</select>
-	<select id="max" resultType="com.howmuch.domain.CalculatorVO">
-		select max(price) as max from hm_value where bno=#{bno};
-	</select>
+	
 </mapper>

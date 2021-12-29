@@ -16,12 +16,8 @@ public interface ValueMapper {
 
 	public List<ValueVO> getList();
 
-	public List<ValueVO> avg(int pri);
-
 	public List<LogVO> log(int bno);
 
-	public List<CalculatorVO> min(int min);
-
-	public List<CalculatorVO> max(int max);
+	public CalculatorVO cal(int bno);
 	
 }

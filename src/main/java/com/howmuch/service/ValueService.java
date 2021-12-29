@@ -14,13 +14,8 @@ public interface ValueService {
 
 	public List<ValueVO> register(ValueVO pri);
 	
-//	public List<ValueVO> operation(int pri);
-
-	public List<ValueVO> avg(int pri);
-	
 	public List<LogVO> log(int bno);
 	
-	public List<CalculatorVO> min(int min);
+	public CalculatorVO cal(int bno);
 	
-	public List<CalculatorVO> max(int max);
 }

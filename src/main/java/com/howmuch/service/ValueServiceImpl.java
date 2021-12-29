@@ -38,18 +38,10 @@ public class ValueServiceImpl implements ValueService {
 		return mapper.getList();
 	}
 
-//	@Override
-//	public List<ValueVO> operation(int pri) {
-//		
-//		mapper.operation(pri);
-//	
-//		return mapper.operation(pri);
-//	}
-
 	@Override
-	public List<ValueVO> avg(int pri) {
-		mapper.avg(pri);
-		return mapper.avg(pri);
+	public CalculatorVO cal(int bno) {
+		
+		return mapper.cal(bno);
 	}
 
 
@@ -59,16 +51,6 @@ public class ValueServiceImpl implements ValueService {
 		return mapper.log(bno);
 	}
 
-	@Override
-	public List<CalculatorVO> min(int min) {
-		mapper.min(min);
-		return mapper.min(min);
-	}
-
-	@Override
-	public List<CalculatorVO> max(int max) {
-		mapper.max(max);
-		return mapper.min(max);
-	}
+	
 
 }
