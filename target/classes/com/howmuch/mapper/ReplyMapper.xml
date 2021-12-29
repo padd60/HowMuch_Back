@@ -16,7 +16,7 @@
    </select>
    
 	<update id="update">
-		update hm_reply set replyer=#{replyer}, rcontent=#{rcontent}
+		update hm_reply set replyer=#{replyer}, rcontent=#{rcontent}, rupdate=sysdate()
 		where rno=#{rno}
 	</update>
 		
