@@ -11,8 +11,6 @@ public interface ValueMapper {
 	public ValueVO getData();
 	
 	public void register(ValueVO pri);
-	
-//	public List<ValueVO> operation(int pri);
 
 	public List<ValueVO> getList();
 

@@ -1,5 +1,7 @@
 package com.howmuch.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,19 @@ public class BoardController {
 	@GetMapping("/readList")
 	public @ResponseBody List<BoardVO> readList(){
 		
-		return service.getList();
+		List<BoardVO> vo = service.getList();
+		
+		
+		
+		for(int i = 0; i < vo.size(); i++) {
+			if(vo.get(i).getTag() != null) {
+				vo.get(i).setTagList(vo.get(i).getTag().split(","));
+			}
+		}
+		
+		log.info(vo.get(0));
+		
+		return vo;
 	}
 	
 	@PostMapping(value="/update")
@@ -45,6 +59,10 @@ public class BoardController {
 	
 	@PostMapping(value="/register")
 	public @ResponseBody List<BoardVO> register(@RequestBody BoardVO vo){
+		
+		if(vo.getTagList() != null) {
+			vo.setTag(String.join(",", vo.getTagList()));
+		}
 		
 		return service.register(vo);
 	}

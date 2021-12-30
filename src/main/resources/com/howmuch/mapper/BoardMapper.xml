@@ -16,7 +16,7 @@
 	</update>
 	
 	<insert id="register">
-		insert into hm_board(title, content, image, tag, suggestion) values(#{title}, #{content}, #{image}, #{tag}, #{suggestion})
+		insert into hm_board(title, content, image, tag, suggestion, writer) values(#{title}, #{content}, #{image}, #{tag}, #{suggestion}, #{writer})
 	</insert>
 	
 	<delete id="delete">
