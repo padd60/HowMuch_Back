@@ -1,6 +1,7 @@
 package com.howmuch.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -15,12 +16,13 @@ public class BoardVO {
 	private int blike;
 	private int bdislike;
 	private int rcount;
+	private String[] tagList;
 	private String tag;
 	private int end;
 	private int suggestion;
 	
 	// 첨부파일 이미지
-	private String image;
+	private String[] image;
 	
 	// 검색필터
 	private String type;
