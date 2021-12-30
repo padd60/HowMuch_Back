@@ -20,4 +20,10 @@ public interface MemberMapper {
 	// 등급 랭킹 >> 티어표
 	public List<Rank2VO> getRankByTier();
 	
+	// 이메일 중복결과
+	public MemberVO findEmail(String email);
+	
+	// 중복확인 nick
+	public MemberVO findNick(String nick);
+	
 }

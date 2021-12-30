@@ -39,6 +39,9 @@ public class BoardController {
 		List<BoardVO> vo = service.getList();
 		
 		
+		if(vo.size()<1) {
+			return null;
+		}
 		
 		for(int i = 0; i < vo.size(); i++) {
 			if(vo.get(i).getTag() != null) {

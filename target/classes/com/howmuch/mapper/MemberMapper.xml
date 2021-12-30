@@ -42,8 +42,17 @@
 		order by score desc
 		limit 10
 	</select>
+	
 	<select id="getRankByTier" resultType="com.howmuch.domain.Rank2VO">
 		select nick, point from hm_member order by point desc limit 10
+	</select>
+	
+	<select id="findEmail" resultType="com.howmuch.domain.MemberVO">
+		select nick from hm_member where email=#{email}
+	</select>
+	
+	<select id="findNick" resultType="com.howmuch.domain.MemberVO">
+		select email from hm_member where nick=#{nick}
 	</select>
 	 
 </mapper>

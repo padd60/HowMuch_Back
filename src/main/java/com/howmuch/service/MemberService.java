@@ -17,4 +17,9 @@ public interface MemberService {
 	// email로 정보가져오기
 	public MemberVO read(String email);
 	
+	// search email same
+	public MemberVO findEmail(String email);
+	
+	// search nick same
+	public MemberVO findNick(String nick);
 }

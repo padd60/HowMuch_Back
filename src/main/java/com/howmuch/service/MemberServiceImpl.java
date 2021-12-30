@@ -50,5 +50,17 @@ public class MemberServiceImpl implements MemberService {
 		
 		return member.getRankByTier();
 	}
+	
+	@Override
+	public MemberVO findEmail(String email) {
+		
+		return member.findEmail(email);
+	}
+	
+	@Override
+	public MemberVO findNick(String nick) {
+		
+		return member.findNick(nick);
+	}
 
 }
