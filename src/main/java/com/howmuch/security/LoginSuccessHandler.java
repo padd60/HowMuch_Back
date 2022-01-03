@@ -1,24 +1,36 @@
 package com.howmuch.security;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-public class LoginSuccessHandler implements AuthenticationSuccessHandler {
+import lombok.extern.log4j.Log4j;
 
-	@Override
+@Log4j
+public class LoginSuccessHandler implements AuthenticationSuccessHandler {@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication authentication) throws IOException, ServletException {
+			Authentication auth) throws IOException, ServletException {
 		
-		HttpSession session = request.getSession();
+		List<String> roleNames = new ArrayList<>();
 		
-		response.sendRedirect("http://localhost:3000/");
+		auth.getAuthorities().forEach(authority -> {
+			roleNames.add(authority.getAuthority());
+			log.info(roleNames);
+		});
+		
+		if(roleNames.contains("ROLE_USER")) {
+			response.sendRedirect("http://localhost:3000/");
+			return;
+		}
 		
 	}
 

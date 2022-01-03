@@ -33,7 +33,9 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "redirect:http://localhost:3000/";
+//		return "redirect:http://localhost:3000/";
+		
+		return "home";
 	}
 	
 }

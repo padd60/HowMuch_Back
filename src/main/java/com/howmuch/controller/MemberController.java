@@ -1,8 +1,11 @@
 package com.howmuch.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.howmuch.domain.MemberVO;
 import com.howmuch.domain.Rank2VO;
 import com.howmuch.domain.RankVO;
+import com.howmuch.security.domain.CustomUser;
 import com.howmuch.service.MemberService;
 
 import lombok.Setter;
@@ -23,68 +27,97 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RestController
 public class MemberController {
-	
+
 	@Setter(onMethod_ = @Autowired)
 	private MemberService service;
 	
+
 	// 회원가입
-	@PostMapping(value="/signUp")
+	@PostMapping(value = "/signUp")
 	public @ResponseBody void signUp(@RequestBody MemberVO vo) {
 		log.info("회원가입 정보----");
 		log.info("email : " + vo.getEmail());
 		log.info("nick : " + vo.getNick());
 		service.signUp(vo);
 	}
-	
+
 	// 마이페이지
 	@GetMapping("/BoardRank")
 	public @ResponseBody List<RankVO> rank1() {
 		log.info("==========================");
 		log.info("My Page");
-		
+
 		List<RankVO> rvo = service.getRankByPosting();
-		
+
 		return rvo;
-		
+
 	}
-	
+
 	// 마이페이지
 	@GetMapping("/TierRank")
-	public @ResponseBody List<Rank2VO> rank2(){
-		
+	public @ResponseBody List<Rank2VO> rank2() {
+
 		log.info("Rank2");
 		List<Rank2VO> rvo = service.getRankByTier();
-		
-		for(Rank2VO vo : rvo) {
-			if(vo.getPoint() < 250) {
+
+		for (Rank2VO vo : rvo) {
+			if (vo.getPoint() < 250) {
 				vo.setTier("Bronze");
-			}
-			else if(vo.getPoint() < 500) {
+			} else if (vo.getPoint() < 500) {
 				vo.setTier("Silver");
-			}
-			else if(vo.getPoint() < 750) {
+			} else if (vo.getPoint() < 750) {
 				vo.setTier("Gold");
-			}
-			else if(vo.getPoint() < 1000) {
+			} else if (vo.getPoint() < 1000) {
 				vo.setTier("Platinum");
-			}
-			else {
+			} else {
 				vo.setTier("Diamond");
 			}
 		}
 		return rvo;
 	}
-	
-	//이메일 중복찾기
-	@GetMapping(value="/findEmail")
+
+	// 이메일 중복찾기
+	@GetMapping(value = "/findEmail")
 	public @ResponseBody MemberVO find(@RequestParam String email) {
 		return service.findEmail(email);
 	}
-	
-	//닉네임 중복찾기
-	@GetMapping(value="/findNick")
+
+	// 닉네임 중복찾기
+	@GetMapping(value = "/findNick")
 	public @ResponseBody MemberVO findNick(@RequestParam String nick) {
 		return service.findNick(nick);
 	}
+
+	// 마이페이지 내 정보
+	@GetMapping("/userinfo")
+	@PreAuthorize("isAuthenticated()")
+	public @ResponseBody MemberVO info(Principal principal) {
+
+		log.info(principal);
+
+		MemberVO vo = service.read(principal.getName());
+
+		return vo;
+	}
 	
+	// 로그인 상태 확인
+	@GetMapping("/checklogin")
+	public boolean check(Principal principal) {
+
+		if(principal.getName() == null) {
+			return false;
+		}
+
+		return true;
+	}
+
+	@GetMapping("/username") 
+	public String currentUserName(@AuthenticationPrincipal CustomUser customUser) { 
+		
+		String username = customUser.getUsername(); 
+		log.info(username);
+		return username;
+	}
+
+
 }

@@ -11,6 +11,8 @@ public class WebMvcConfig implements WebMvcConfigurer{
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
+        .exposedHeaders("X-AUTH-TOKEN")
+        .allowCredentials(true)
         .allowedOrigins("*")
         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
         .allowedHeaders("*")

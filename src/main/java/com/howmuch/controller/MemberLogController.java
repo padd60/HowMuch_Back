@@ -45,17 +45,25 @@ public class MemberLogController {
 		    
 		}
 		
-		// 로그아웃
-		@GetMapping("/customLogout")
-		public void logoutGET() {
-			log.info("get logout");
-		}
+//		// 로그아웃
+//		@GetMapping("/customLogout")
+//		public void logoutGET() {
+//			log.info("get logout");
+//		}
+//		
+//		// 로그아웃
+//		@PostMapping("/customLogout")
+//		public void logoutPOST() {
+//			log.info("post logout");
+//		}
 		
-		// 로그아웃
-		@PostMapping("/customLogout")
-		public void logoutPOST() {
-			log.info("post logout");
-		}
+//		@GetMapping("/logout")
+//		public String logout() {
+//			
+//			log.info("logout!!!!!");
+//			
+//			return "redirect:http://localhost:3000";
+//		}
 		
 		
 		@GetMapping("/member")
