@@ -28,22 +28,22 @@ public class MemberLogController {
 		private MemberService service;
 	
 		// 로그인
-		@GetMapping("/customLogin")
-		public void loginInput(String error, String logout, Model model) {
-			
-			log.info("=============================");
-			log.info("error : " + error);
-			
-			log.info("logout : " + logout);
-			
-			if(error != null){
-		    	model.addAttribute("error", "로그인 에러");
-		    }
-		    if(logout != null){
-		    	model.addAttribute("logout", "로그아웃됨");
-		    }
-		    
-		}
+//		@GetMapping("/customLogin")
+//		public void loginInput(String error, String logout, Model model) {
+//			
+//			log.info("=============================");
+//			log.info("error : " + error);
+//			
+//			log.info("logout : " + logout);
+//			
+//			if(error != null){
+//		    	model.addAttribute("error", "로그인 에러");
+//		    }
+//		    if(logout != null){
+//		    	model.addAttribute("logout", "로그아웃됨");
+//		    }
+//		    
+//		}
 		
 //		// 로그아웃
 //		@GetMapping("/customLogout")
