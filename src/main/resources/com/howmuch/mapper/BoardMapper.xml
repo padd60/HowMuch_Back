@@ -8,7 +8,7 @@
 	</select>
 	
 	<select id="getList" resultType="com.howmuch.domain.BoardVO">
-		select * from hm_board
+		select * from hm_board order by bno desc
 	</select>
 	
 	<select id="hotList" resultType="com.howmuch.domain.BoardVO">
