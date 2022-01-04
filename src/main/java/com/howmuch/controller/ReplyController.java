@@ -50,6 +50,7 @@ public class ReplyController {
 	   public @ResponseBody List<ReplyVO> insert(@RequestBody ReplyVO reply){
 	      
 	      log.info(reply.getReplyer());
+	 
 	      
 	      return service.insert(reply);
 	   }
