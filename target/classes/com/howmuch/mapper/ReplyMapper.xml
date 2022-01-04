@@ -12,7 +12,7 @@
 	
 	</insert>
 	<select id="getList" resultType="com.howmuch.domain.ReplyVO">
-      select * from hm_reply
+      select * from hm_reply where bno=#{bno}
    </select>
    
 	<update id="update">

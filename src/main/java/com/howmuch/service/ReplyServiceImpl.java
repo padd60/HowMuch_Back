@@ -23,8 +23,8 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public List<ReplyVO> getList() {
-		return mapper.getList();
+	public List<ReplyVO> getList(int bno) {
+		return mapper.getList(bno);
 	}
 
 	@Override
@@ -36,17 +36,17 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public List<ReplyVO> delete(int rno) {
+	public List<ReplyVO> delete(int rno, int bno) {
 	
-		mapper.delete(rno);
-	      return mapper.getList();
+		mapper.delete(rno, bno);
+	      return mapper.getList(bno);
 	   }
 
 	@Override
 	public List<ReplyVO> insert(ReplyVO reply) {
 
 		mapper.insert(reply);
-	      return mapper.getList();
+	      return mapper.getList(reply.getBno());
 	}
 
 }

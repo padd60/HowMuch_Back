@@ -12,10 +12,10 @@ public interface ReplyMapper {
 
 	public ReplyVO read(int rno);
 
-	public void delete(int rno);
+	public void delete(int rno, int bno);
 
 	public int update(ReplyVO reply);
 	
-	public List<ReplyVO> getList();
+	public List<ReplyVO> getList(int bno);
 
 }

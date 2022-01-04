@@ -8,11 +8,11 @@ public interface ReplyService {
 
 	public ReplyVO get();
 	
-	public List<ReplyVO> getList();
+	public List<ReplyVO> getList(int bno);
 	
 	public ReplyVO update(ReplyVO reply);
 	
-	public List<ReplyVO> delete(int rno);
+	public List<ReplyVO> delete(int rno, int bno);
 	
 	public List<ReplyVO> insert(ReplyVO reply);
 }

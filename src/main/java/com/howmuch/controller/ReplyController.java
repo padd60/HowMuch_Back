@@ -3,6 +3,7 @@ package com.howmuch.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,8 +33,8 @@ public class ReplyController {
 	   }
 	   
 	   @GetMapping("/ReadReplyList")
-	   public @ResponseBody List<ReplyVO> readList(){
-	      return service.getList();
+	   public @ResponseBody List<ReplyVO> readList(@RequestParam(value="bno") int bno){
+	      return service.getList(bno);
 	   }
 	  
 	   @PostMapping(value="/UpdateReply")
@@ -56,11 +57,13 @@ public class ReplyController {
 	   }
 	   
 	   @DeleteMapping(value="/DeleteReply")
-	   public @ResponseBody List<ReplyVO> delete(@RequestParam(value="rno") int rno){
+	   @PreAuthorize("isAuthenticated()")
+	   public @ResponseBody List<ReplyVO> delete(@RequestParam(value="rno") int rno, @RequestParam(value="bno") int bno){
 	      
 	      log.info(rno);
+	      log.info(bno);
 	      
-	      return service.delete(rno);
+	      return service.delete(rno, bno);
 	      }
 
 }
