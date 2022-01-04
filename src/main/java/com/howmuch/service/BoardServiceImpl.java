@@ -28,6 +28,11 @@ public class BoardServiceImpl implements BoardService {
 
 		return mapper.getList();
 	}
+	
+	public List<BoardVO> hotList() {
+
+		return mapper.hotList();
+	}
 
 	@Override
 	public List<BoardVO> update(BoardVO vo) {
@@ -54,11 +59,16 @@ public class BoardServiceImpl implements BoardService {
 		
 		return mapper.getList();
 	}
+	
+	@Override
+	public void rcount(int bno) {
+		mapper.rcount(bno);
+	}
 
 	@Override
-	public List<BoardVO> getSearchList() {
+	public List<BoardVO> getSearchList(String type, String keyword) {
 
-		return mapper.selectSearchList();
+		return mapper.selectSearchList(type, keyword);
 	}
 
 }

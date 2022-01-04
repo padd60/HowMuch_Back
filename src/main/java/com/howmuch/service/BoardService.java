@@ -10,11 +10,15 @@ public interface BoardService {
 	
 	public List<BoardVO> getList();
 	
+	public List<BoardVO> hotList();
+	
 	public List<BoardVO> update(BoardVO vo);
 	
 	public List<BoardVO> register(BoardVO vo);
 	
 	public List<BoardVO> delete(int bno);
 	
-	public List<BoardVO> getSearchList();
+	public List<BoardVO> getSearchList(String type, String keyword);
+	
+	public void rcount(int bno);
 }

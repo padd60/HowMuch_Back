@@ -52,6 +52,12 @@ public class BoardController {
 		return vo;
 	}
 	
+	@GetMapping("/hotList")
+	public @ResponseBody List<BoardVO> hotList(){
+		
+		return service.hotList();
+	}
+	
 	@PostMapping(value="/update")
 	public @ResponseBody List<BoardVO> update(@RequestBody BoardVO vo) {
 
@@ -79,10 +85,12 @@ public class BoardController {
 	public @ResponseBody List<BoardVO> getSearchList(@RequestParam("type") String type, @RequestParam("keyword") String keyword) {
 		BoardVO vo = new BoardVO();
 		
+		log.info("type : " + type);
+		log.info("keyword : " + keyword);
+		
 		vo.setType(type);
 		vo.setKeyword(keyword);
-		return service.getSearchList();
+		return service.getSearchList(type, keyword);
 	}
-	
 	
 }
