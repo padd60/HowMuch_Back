@@ -13,6 +13,6 @@ public class ReplyVO {
 	private String rcontent;
 	private Date rdate;
 	private Date rupdate;
-	private int blike;
-	private int bdislike;
+	private int rlike;
+	private int rdislike;
 }
