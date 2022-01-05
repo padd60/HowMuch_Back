@@ -21,8 +21,9 @@ public class BoardVO {
 	private int suggestion;
 	
 	// 첨부파일 이미지
-	private String[] image;
-	
+	private String[] imageList;
+    private String image;
+    
 	// 검색필터
 	private String type;
 	private String keyword;
