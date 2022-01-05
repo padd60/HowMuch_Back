@@ -12,7 +12,7 @@ public interface ReplyService {
 	
 	public ReplyVO update(ReplyVO reply);
 	
-	public List<ReplyVO> delete(int rno, int bno);
+	public List<ReplyVO> delete(ReplyVO reply);
 	
 	public List<ReplyVO> insert(ReplyVO reply);
 }

@@ -28,7 +28,7 @@
 	</delete>
 	
 	<select id="selectSearchList" resultType="com.howmuch.domain.BoardVO">
-	select * from hm_board
+		select * from hm_board
 		<choose>
 			<when test="param1 != null and param1 == 'title'">
 				 where title like concat('%', #{param2}, '%')
@@ -45,4 +45,12 @@
 	<update id="rcount" parameterType="int">
 		update hm_board set rcount = rcount + 1 where bno = #{bno}
 	</update>
+	
+	<update id="blike" parameterType="int">
+       update hm_board set blike = blike + 1 where bno = #{bno}
+   </update>
+   
+   <update id="bdislike" parameterType="int">
+       update hm_board set bdislike = bdislike + 1 where bno = #{bno}
+   </update>
 </mapper>

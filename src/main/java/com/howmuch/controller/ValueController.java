@@ -1,8 +1,10 @@
 package com.howmuch.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.howmuch.domain.CalculatorVO;
 import com.howmuch.domain.LogVO;
+import com.howmuch.domain.MemberVO;
 import com.howmuch.domain.ValueVO;
+import com.howmuch.service.MemberService;
 import com.howmuch.service.ValueService;
 
 import lombok.Setter;
@@ -26,19 +30,38 @@ public class ValueController {
 	
 		@Setter(onMethod_ = @Autowired)
 		private ValueService service;
+		
+		@Setter(onMethod_ = @Autowired)
+		private MemberService mservice;
 	
 		@GetMapping("/ReadValueList")
 		public @ResponseBody List<ValueVO> readList(){
 	      return service.getList();
 		}
 
-	 	@PostMapping(value="/RegisterValue")
-	 	public @ResponseBody List<ValueVO> register(@RequestBody ValueVO pri){
+		@PostMapping(value="/RegisterValue")
+	 	@PreAuthorize("isAuthenticated()")
+	 	public @ResponseBody List<ValueVO> register(@RequestBody ValueVO pri, Principal principal ){
 	      
-	      log.info(pri.getPrice());
-	      log.info(pri.getBno());
-	      
-	      return service.register(pri);
+		 	  MemberVO vo = mservice.read(principal.getName());
+		 	  
+		 	  pri.setMno(vo.getMno());
+		 	  pri.setRater(vo.getNick());
+		 		
+		      log.info(pri.getPrice());
+		      log.info(pri.getBno());
+		      log.info(pri.getMno());
+		      log.info(pri.getRater());
+		      
+		      List<ValueVO> list = service.getList();
+		      
+		      for(int i = 0; i < list.size(); i++ ) {
+		    	  if(list.get(i).getRater().equals(pri.getRater())) {
+		    		  return service.getList();
+		    	  }
+		      }
+		      
+		      return service.register(pri);
 	   }
 		
 		@GetMapping(value="/log")

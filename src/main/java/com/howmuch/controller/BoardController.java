@@ -27,75 +27,95 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class BoardController {
 	
-	@Setter(onMethod_ = @Autowired)
-	private BoardService service;
-	
-	@Setter(onMethod_ = @Autowired)
-	private MemberService mservice;
-	
-	@GetMapping("/read")
-	public @ResponseBody BoardVO read() {
-		return service.get();
-	}
-	
-	@GetMapping("/readList")
-	public @ResponseBody List<BoardVO> readList(){
+		@Setter(onMethod_ = @Autowired)
+		private BoardService service;
 		
+		@Setter(onMethod_ = @Autowired)
+		private MemberService mservice;
 		
-		return service.getList();
-	}
-	
-	@GetMapping("/hotList")
-	public @ResponseBody List<BoardVO> hotList(){
-		
-		return service.hotList();
-	}
-	
-	@PostMapping(value="/update")
-	public @ResponseBody List<BoardVO> update(@RequestBody BoardVO vo) {
-
-		return service.update(vo);
-	}
-	
-	@PostMapping(value="/register")
-	@PreAuthorize("isAuthenticated()")
-	public @ResponseBody List<BoardVO> register(@RequestBody BoardVO vo, Principal principal){
-		
-		MemberVO user = mservice.read(principal.getName());
-		
-		vo.setWriter(user.getNick());
-		vo.setMno(user.getMno());
-		
-		// 태그설정
-		if(vo.getTagList() != null) {
-			vo.setTag(String.join(",", vo.getTagList()));
+		@GetMapping("/read")
+		public @ResponseBody BoardVO read() {
+			return service.get();
 		}
 		
-		// 이미지 첨부파일 설정
-		if(vo.getImageList() != null) {
-	        vo.setImage(String.join("_", vo.getImageList()));
-	    }
+		@GetMapping("/readList")
+		public @ResponseBody List<BoardVO> readList(){
+			
+			
+			return service.getList();
+		}
 		
-		return service.register(vo);
-	}
+		@GetMapping("/hotList")
+		public @ResponseBody List<BoardVO> hotList(){
+			
+			return service.hotList();
+		}
+		
+		@PostMapping(value="/update")
+		public @ResponseBody List<BoardVO> update(@RequestBody BoardVO vo) {
 	
-	@DeleteMapping(value="/delete")
-	public @ResponseBody List<BoardVO> delete(@RequestParam(value="bno") int bno){
+			return service.update(vo);
+		}
 		
-		return service.delete(bno);
+		@PostMapping(value="/register")
+		@PreAuthorize("isAuthenticated()")
+		public @ResponseBody List<BoardVO> register(@RequestBody BoardVO vo, Principal principal){
+			
+			MemberVO user = mservice.read(principal.getName());
+			
+			vo.setWriter(user.getNick());
+			vo.setMno(user.getMno());
+			
+			// 태그설정
+			if(vo.getTagList() != null) {
+				vo.setTag(String.join(",", vo.getTagList()));
+			}
+			
+			// 이미지 첨부파일 설정
+			if(vo.getImageList() != null) {
+		        vo.setImage(String.join("_", vo.getImageList()));
+		    }
+			
+			return service.register(vo);
+		}
 		
-	}
-	
-	@GetMapping("/getSearchList")
-	public @ResponseBody List<BoardVO> getSearchList(@RequestParam("type") String type, @RequestParam("keyword") String keyword) {
-		BoardVO vo = new BoardVO();
+		@DeleteMapping(value="/delete")
+		public @ResponseBody List<BoardVO> delete(@RequestParam(value="bno") int bno){
+			
+			return service.delete(bno);
+			
+		}
 		
-		log.info("type : " + type);
-		log.info("keyword : " + keyword);
+		@GetMapping("/getSearchList")
+		public @ResponseBody List<BoardVO> getSearchList(@RequestParam("type") String type, @RequestParam("keyword") String keyword) {
+			BoardVO vo = new BoardVO();
+			
+			log.info("type : " + type);
+			log.info("keyword : " + keyword);
+			
+			vo.setType(type);
+			vo.setKeyword(keyword);
+			return service.getSearchList(type, keyword);
+		}
 		
-		vo.setType(type);
-		vo.setKeyword(keyword);
-		return service.getSearchList(type, keyword);
-	}
+		@GetMapping(value="/rcount")
+	    public void rcount(@RequestParam(value="bno") int bno){
+		      
+			service.rcount(bno);
+			
+	   }
+		@PostMapping(value="/blike")
+	    public void blike(@RequestParam(value="bno") int bno){
+		      
+		      service.blike(bno);
+		      
+	   }
+		   
+	   @PostMapping(value="/bdislike")
+	   public void bdislike(@RequestParam(value="bno") int bno){
+	      
+		      service.bdislike(bno);
+		      
+	   }
 	
 }

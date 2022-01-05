@@ -45,7 +45,22 @@ public class BoardServiceImpl implements BoardService {
 	
 	public List<BoardVO> hotList() {
 
-		return mapper.hotList();
+		List<BoardVO> list = mapper.hotList();
+		
+		if(list.size()<1) {
+			return null;
+		}
+		
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getTag() != "not") {
+				list.get(i).setTagList(list.get(i).getTag().split(","));
+			}
+			if(list.get(i).getImage() != null) {
+				list.get(i).setImageList(list.get(i).getImage().split("_"));
+			}
+		}
+		
+		return list;
 	}
 
 	@Override
@@ -84,5 +99,15 @@ public class BoardServiceImpl implements BoardService {
 
 		return mapper.selectSearchList(type, keyword);
 	}
+	
+	@Override
+    public void blike(int bno) {
+       mapper.blike(bno);
+    }
+   
+    @Override
+    public void bdislike(int bno) {
+       mapper.bdislike(bno);
+    }
 
 }

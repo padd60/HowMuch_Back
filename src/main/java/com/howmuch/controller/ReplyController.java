@@ -1,5 +1,6 @@
 package com.howmuch.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.howmuch.domain.MemberVO;
 import com.howmuch.domain.ReplyVO;
+import com.howmuch.service.MemberService;
 import com.howmuch.service.ReplyService;
 
 import lombok.Setter;
@@ -26,6 +29,9 @@ public class ReplyController {
 	
 		@Setter(onMethod_ = @Autowired)
 		private ReplyService service;
+		
+		@Setter(onMethod_ = @Autowired)
+		private MemberService mservice;
 	 
 		@GetMapping("/ReadReply")
 	   public @ResponseBody ReplyVO get() {
@@ -58,12 +64,14 @@ public class ReplyController {
 	   
 	   @DeleteMapping(value="/DeleteReply")
 	   @PreAuthorize("isAuthenticated()")
-	   public @ResponseBody List<ReplyVO> delete(@RequestParam(value="rno") int rno, @RequestParam(value="bno") int bno){
+	   public @ResponseBody List<ReplyVO> delete(ReplyVO reply, Principal principal){
+		  
+	      MemberVO vo = mservice.read(principal.getName());
 	      
-	      log.info(rno);
-	      log.info(bno);
-	      
-	      return service.delete(rno, bno);
+	      if(!reply.getReplyer().equals(vo.getNick())) {
+	    	  return service.getList(reply.getBno());
 	      }
+	      return service.delete(reply);
+	   }
 
 }

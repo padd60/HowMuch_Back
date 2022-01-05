@@ -36,10 +36,10 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public List<ReplyVO> delete(int rno, int bno) {
+	public List<ReplyVO> delete(ReplyVO reply) {
 	
-		mapper.delete(rno, bno);
-	      return mapper.getList(bno);
+		mapper.delete(reply);
+	      return mapper.getList(reply.getBno());
 	   }
 
 	@Override

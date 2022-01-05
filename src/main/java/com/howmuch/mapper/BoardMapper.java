@@ -21,4 +21,8 @@ public interface BoardMapper {
 	public void rcount(int bno);
 
 	public List<BoardVO> selectSearchList(String type, String keyword);
+	
+	public void blike(int bno);
+	   
+    public void bdislike(int bno);
 }

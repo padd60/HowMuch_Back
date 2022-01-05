@@ -12,7 +12,7 @@
 	
 	</insert>
 	<select id="getList" resultType="com.howmuch.domain.ValueVO">
-      select * from hm_value
+       select * from hm_value
    </select>
    
 	<select id="log" resultType="com.howmuch.domain.LogVO">

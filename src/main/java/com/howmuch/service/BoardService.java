@@ -21,4 +21,8 @@ public interface BoardService {
 	public List<BoardVO> getSearchList(String type, String keyword);
 	
 	public void rcount(int bno);
+	
+	public void blike(int bno);
+	   
+    public void bdislike(int bno);
 }

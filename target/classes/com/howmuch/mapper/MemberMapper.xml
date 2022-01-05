@@ -35,7 +35,7 @@
 		where mem.email = #{email}
 	</select>
 	<select id="getRankByPosting" resultType="com.howmuch.domain.RankVO">
-		select mem.nick as nick, board.blike + board.suggestion as score, count(board.mno) as posting
+		select mem.nick as nick, board.blike + board.rcount as score, count(board.mno) as posting
 		from
 		hm_member mem left join hm_board board on mem.mno = board.mno
 		group by mem.nick, score

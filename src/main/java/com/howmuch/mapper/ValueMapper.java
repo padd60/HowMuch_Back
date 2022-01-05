@@ -18,4 +18,5 @@ public interface ValueMapper {
 
 	public CalculatorVO cal(int bno);
 	
+	
 }

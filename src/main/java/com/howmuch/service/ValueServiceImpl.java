@@ -52,5 +52,4 @@ public class ValueServiceImpl implements ValueService {
 	}
 
 	
-
 }
