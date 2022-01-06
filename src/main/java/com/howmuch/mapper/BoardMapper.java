@@ -16,15 +16,11 @@ public interface BoardMapper {
 	
 	public void register(BoardVO vo);
 	
-	public void delete(int bno);
+	public void delete(BoardVO board);
 	
 	public void rcount(int bno);
 
 	public List<BoardVO> selectSearchList(String type, String keyword);
 	
-	public void blike(int bno);
-	   
-    public void bdislike(int bno);
-    
-    public void checkEnd(BoardVO vo);
+	public void checkEnd(BoardVO vo);
 }

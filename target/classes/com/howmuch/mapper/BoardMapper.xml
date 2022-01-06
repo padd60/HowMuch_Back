@@ -12,11 +12,11 @@
 	</select>
 	
 	<select id="hotList" resultType="com.howmuch.domain.BoardVO">
-		select * from hm_board order by blike desc limit 3;
+		select * from hm_board order by blike desc
 	</select>
 	
 	<update id="updateData">
-		update hm_board set title=#{title}, content=#{content}, image=#{image}, tag=#{tag} where bno=#{bno}
+		update hm_board set title=#{title}, content=#{content}, suggestion=#{suggestion}, image=#{image}, tag=#{tag} where bno=#{bno}
 	</update>
 	
 	<insert id="register">
@@ -28,7 +28,7 @@
 	</delete>
 	
 	<select id="selectSearchList" resultType="com.howmuch.domain.BoardVO">
-		select * from hm_board
+	select * from hm_board
 		<choose>
 			<when test="param1 != null and param1 == 'title'">
 				 where title like concat('%', #{param2}, '%')
@@ -46,15 +46,7 @@
 		update hm_board set rcount = rcount + 1 where bno = #{bno}
 	</update>
 	
-	<update id="blike" parameterType="int">
-       update hm_board set blike = blike + 1 where bno = #{bno}
-   </update>
-   
-   <update id="bdislike" parameterType="int">
-       update hm_board set bdislike = bdislike + 1 where bno = #{bno}
-   </update>
-   
-   <update id="checkEnd">
+	<update id="checkEnd">
    		update hm_board set end = #{end} where bno = #{bno}
-   </update>
+   	</update>
 </mapper>

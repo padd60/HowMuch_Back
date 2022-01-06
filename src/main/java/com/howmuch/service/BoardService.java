@@ -16,15 +16,11 @@ public interface BoardService {
 	
 	public List<BoardVO> register(BoardVO vo);
 	
-	public List<BoardVO> delete(int bno);
+	public List<BoardVO> delete(BoardVO board);
 	
 	public List<BoardVO> getSearchList(String type, String keyword);
 	
 	public void rcount(int bno);
 	
-	public void blike(int bno);
-	   
-    public void bdislike(int bno);
-    
-    public void checkEnd(BoardVO vo);
+	public void checkEnd(BoardVO vo);
 }

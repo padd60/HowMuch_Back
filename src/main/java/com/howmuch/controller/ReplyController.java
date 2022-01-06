@@ -68,6 +68,11 @@ public class ReplyController {
 		  
 	      MemberVO vo = mservice.read(principal.getName());
 	      
+	      log.info(vo);
+	      log.info(reply.getReplyer());
+	      log.info(reply.getReplyer().equals(vo.getNick()));
+	      log.info(vo.getNick());
+	      
 	      if(!reply.getReplyer().equals(vo.getNick())) {
 	    	  return service.getList(reply.getBno());
 	      }

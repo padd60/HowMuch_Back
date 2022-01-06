@@ -27,15 +27,15 @@ public class ValueServiceImpl implements ValueService {
 	}
 
 	@Override
-	public List<ValueVO> getList() {
-		return mapper.getList();
+	public List<ValueVO> getList(ValueVO pri) {
+		return mapper.getList(pri);
 	}
 
 	@Override
 	public List<ValueVO> register(ValueVO pri) {
 		
 		mapper.register(pri);
-		return mapper.getList();
+		return mapper.getList(pri);
 	}
 
 	@Override
@@ -52,4 +52,6 @@ public class ValueServiceImpl implements ValueService {
 	}
 
 	
+
 }
+

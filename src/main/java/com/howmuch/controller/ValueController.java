@@ -38,13 +38,13 @@ public class ValueController {
 		
 		@Setter(onMethod_ = @Autowired)
 		private BoardService bservice;
-		
+	
 		@GetMapping("/ReadValueList")
-		public @ResponseBody List<ValueVO> readList(){
-	      return service.getList();
+		public @ResponseBody List<ValueVO> readList(ValueVO pri){
+	      return service.getList(pri);
 		}
 
-		@GetMapping(value="/RegisterValue")
+		@PostMapping(value="/RegisterValue")
 	 	@PreAuthorize("isAuthenticated()")
 	 	public @ResponseBody List<ValueVO> register(@RequestBody ValueVO pri, Principal principal ){
 	      
@@ -58,14 +58,14 @@ public class ValueController {
 		      log.info(pri.getMno());
 		      log.info(pri.getRater());
 		      
-		      List<ValueVO> list = service.getList();
+		      List<ValueVO> list = service.getList(pri);
 		      
 		      for(int i = 0; i < list.size(); i++ ) {
 		    	  if(list.get(i).getRater().equals(pri.getRater())) {
-		    		  return service.getList();
+		    		  
+		    		  return null;
 		    	  }
 		      }
-		      
 		      return service.register(pri);
 	   }
 		
@@ -82,10 +82,12 @@ public class ValueController {
 			
 			CalculatorVO cal = service.cal(bno);
 			
+			cal.setAvg(Math.round(cal.getAvg()));
+			
 			return cal;
 		}
 		
-		@PostMapping("/setPoint")
+		@GetMapping("/setPoint")
 		@PreAuthorize("isAuthenticated()")
 		public @ResponseBody CalculatorVO setpoint(BoardVO vo, Principal principal){
 			
@@ -135,7 +137,6 @@ public class ValueController {
 			return cal;
 			
 		}
-		
 		
 		
 }

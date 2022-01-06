@@ -35,6 +35,7 @@ public class BoardServiceImpl implements BoardService {
 			if(list.get(i).getTag() != "not") {
 				list.get(i).setTagList(list.get(i).getTag().split(","));
 			}
+			
 			if(list.get(i).getImage() != null) {
 				list.get(i).setImageList(list.get(i).getImage().split("_"));
 			}
@@ -44,7 +45,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	public List<BoardVO> hotList() {
-
+		
 		List<BoardVO> list = mapper.hotList();
 		
 		if(list.size()<1) {
@@ -55,6 +56,7 @@ public class BoardServiceImpl implements BoardService {
 			if(list.get(i).getTag() != "not") {
 				list.get(i).setTagList(list.get(i).getTag().split(","));
 			}
+			
 			if(list.get(i).getImage() != null) {
 				list.get(i).setImageList(list.get(i).getImage().split("_"));
 			}
@@ -78,15 +80,15 @@ public class BoardServiceImpl implements BoardService {
 		
 		mapper.register(vo);
 		
-		return mapper.getList();
+		return getList();
 	}
 
 	@Override
-	public List<BoardVO> delete(int bno) {
+	public List<BoardVO> delete(BoardVO board) {
 		
-		mapper.delete(bno);
+		mapper.delete(board);
 		
-		return mapper.getList();
+		return getList();
 	}
 	
 	@Override
@@ -100,16 +102,6 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.selectSearchList(type, keyword);
 	}
 	
-	@Override
-    public void blike(int bno) {
-       mapper.blike(bno);
-    }
-   
-    @Override
-    public void bdislike(int bno) {
-       mapper.bdislike(bno);
-    }
-
 	@Override
 	public void checkEnd(BoardVO vo) {
 		mapper.checkEnd(vo);
