@@ -63,4 +63,11 @@ public class MemberServiceImpl implements MemberService {
 		return member.findNick(nick);
 	}
 
+	@Override
+	public void setPoing(MemberVO vo) {
+		
+		member.setPoing(vo);
+		
+	}
+
 }

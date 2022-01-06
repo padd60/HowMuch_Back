@@ -26,4 +26,6 @@ public interface MemberMapper {
 	// 중복확인 nick
 	public MemberVO findNick(String nick);
 	
+	public void setPoing(MemberVO vo);
+	
 }

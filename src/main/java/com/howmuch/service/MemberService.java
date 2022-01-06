@@ -22,4 +22,7 @@ public interface MemberService {
 	
 	// search nick same
 	public MemberVO findNick(String nick);
+	
+	// 포인트 책정
+	public void setPoing(MemberVO vo);
 }

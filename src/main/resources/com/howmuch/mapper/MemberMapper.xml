@@ -54,5 +54,9 @@
 	<select id="findNick" resultType="com.howmuch.domain.MemberVO">
 		select email from hm_member where nick=#{nick}
 	</select>
+	
+	<update id="setPoint">
+		update hm_member set poing=#{poing} where mno=#{mno}
+	</update>
 	 
 </mapper>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.howmuch.domain.BoardVO;
 import com.howmuch.domain.CalculatorVO;
 import com.howmuch.domain.LogVO;
 import com.howmuch.domain.MemberVO;
@@ -81,6 +82,53 @@ public class ValueController {
 			
 			return cal;
 		}
+		
+		@PostMapping("/setPoint")
+		@PreAuthorize("isAuthenticated()")
+		public @ResponseBody CalculatorVO setpoint(BoardVO vo, Principal principal){
+			
+			CalculatorVO cal = service.cal(vo.getBno());
+			
+			cal.setAvg(Math.round(cal.getAvg()));
+			
+			MemberVO user = mservice.read(principal.getName());
+			
+			if(user.getMno() != vo.getMno()) {
+				return null;
+			}
+			
+			double avg = cal.getAvg();
+			
+			if(avg >= 100000000) {
+				user.setPoint(250);
+			}
+			else if(avg < 100000000) {
+				int added = (int)(avg - 1000000)/1000000;
+				user.setPoint(100+added);
+			}
+			else if(avg < 1000000) {
+				user.setPoint(70);
+			}
+			else if(avg < 500000) {
+				user.setPoint(50);
+			}
+			else if(avg < 100000) {
+				user.setPoint(30);
+			}
+			else if(avg < 50000){
+				user.setPoint(20);
+			}
+			else {
+				user.setPoint(10);
+			}
+			
+			
+			mservice.setPoing(user);
+			
+			return cal;
+			
+		}
+		
 		
 		
 }
