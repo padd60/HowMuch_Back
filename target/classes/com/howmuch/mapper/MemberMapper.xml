@@ -56,7 +56,7 @@
 	</select>
 	
 	<update id="setPoint">
-		update hm_member set poing=#{poing} where mno=#{mno}
+		update hm_member set point=#{point} where mno=#{mno}
 	</update>
 	 
 </mapper>

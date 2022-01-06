@@ -123,7 +123,7 @@ public class ValueController {
 			}
 			
 			
-			mservice.setPoing(user);
+			mservice.setPoint(user);
 			
 			return cal;
 			

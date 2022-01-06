@@ -24,5 +24,5 @@ public interface MemberService {
 	public MemberVO findNick(String nick);
 	
 	// 포인트 책정
-	public void setPoing(MemberVO vo);
+	public void setPoint(MemberVO vo);
 }

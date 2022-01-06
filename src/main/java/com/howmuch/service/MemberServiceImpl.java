@@ -64,9 +64,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void setPoing(MemberVO vo) {
+	public void setPoint(MemberVO vo) {
 		
-		member.setPoing(vo);
+		member.setPoint(vo);
 		
 	}
 
