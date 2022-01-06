@@ -25,4 +25,6 @@ public interface BoardMapper {
 	public void blike(int bno);
 	   
     public void bdislike(int bno);
+    
+    public void checkEnd(BoardVO vo);
 }

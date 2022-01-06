@@ -44,7 +44,7 @@ public class ValueController {
 	      return service.getList();
 		}
 
-		@PostMapping(value="/RegisterValue")
+		@GetMapping(value="/RegisterValue")
 	 	@PreAuthorize("isAuthenticated()")
 	 	public @ResponseBody List<ValueVO> register(@RequestBody ValueVO pri, Principal principal ){
 	      
@@ -82,8 +82,6 @@ public class ValueController {
 			
 			CalculatorVO cal = service.cal(bno);
 			
-			cal.setAvg(Math.round(cal.getAvg()));
-			
 			return cal;
 		}
 		
@@ -106,22 +104,22 @@ public class ValueController {
 			double avg = cal.getAvg();
 			
 			if(avg >= 100000000) {
-				user.setPoint(250);
-			}
-			else if(avg < 100000000) {
 				int added = (int)(avg - 1000000)/1000000;
 				user.setPoint(100+added);
+			}	
+			else if(avg > 700000) {
+				user.setPoint(100);
 			}
-			else if(avg < 1000000) {
+			else if(avg > 500000) {
 				user.setPoint(70);
 			}
-			else if(avg < 500000) {
+			else if(avg > 100000) {
 				user.setPoint(50);
 			}
-			else if(avg < 100000) {
+			else if(avg > 50000){
 				user.setPoint(30);
 			}
-			else if(avg < 50000){
+			else if(avg > 10000){
 				user.setPoint(20);
 			}
 			else {
@@ -130,7 +128,7 @@ public class ValueController {
 			
 			bvo.setEnd(1);
 			
-			bservice.update(bvo);
+			bservice.checkEnd(bvo);
 			
 			mservice.setPoint(user);
 			

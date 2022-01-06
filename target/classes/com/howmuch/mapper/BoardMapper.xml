@@ -53,4 +53,8 @@
    <update id="bdislike" parameterType="int">
        update hm_board set bdislike = bdislike + 1 where bno = #{bno}
    </update>
+   
+   <update id="checkEnd">
+   		update hm_board set end = #{end} where bno = #{bno}
+   </update>
 </mapper>

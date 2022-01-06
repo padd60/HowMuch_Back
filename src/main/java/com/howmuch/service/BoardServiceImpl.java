@@ -110,4 +110,10 @@ public class BoardServiceImpl implements BoardService {
        mapper.bdislike(bno);
     }
 
+	@Override
+	public void checkEnd(BoardVO vo) {
+		mapper.checkEnd(vo);
+		
+	}
+
 }
