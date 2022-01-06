@@ -6,7 +6,7 @@ import com.howmuch.domain.BoardVO;
 
 public interface BoardService {
 	
-	public BoardVO get();
+	public BoardVO get(int bno);
 	
 	public List<BoardVO> getList();
 	

@@ -18,9 +18,9 @@ public class BoardServiceImpl implements BoardService {
 	private BoardMapper mapper;
 	
 	@Override
-	public BoardVO get() {
+	public BoardVO get(int bno) {
 
-		return mapper.getData();
+		return mapper.getData(bno);
 	}
 
 	@Override

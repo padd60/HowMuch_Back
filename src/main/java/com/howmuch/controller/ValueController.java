@@ -18,6 +18,7 @@ import com.howmuch.domain.CalculatorVO;
 import com.howmuch.domain.LogVO;
 import com.howmuch.domain.MemberVO;
 import com.howmuch.domain.ValueVO;
+import com.howmuch.service.BoardService;
 import com.howmuch.service.MemberService;
 import com.howmuch.service.ValueService;
 
@@ -34,7 +35,10 @@ public class ValueController {
 		
 		@Setter(onMethod_ = @Autowired)
 		private MemberService mservice;
-	
+		
+		@Setter(onMethod_ = @Autowired)
+		private BoardService bservice;
+		
 		@GetMapping("/ReadValueList")
 		public @ResponseBody List<ValueVO> readList(){
 	      return service.getList();
@@ -93,6 +97,8 @@ public class ValueController {
 			
 			MemberVO user = mservice.read(principal.getName());
 			
+			BoardVO bvo = bservice.get(vo.getBno());
+			
 			if(user.getMno() != vo.getMno()) {
 				return null;
 			}
@@ -122,6 +128,9 @@ public class ValueController {
 				user.setPoint(10);
 			}
 			
+			bvo.setEnd(1);
+			
+			bservice.update(bvo);
 			
 			mservice.setPoint(user);
 			

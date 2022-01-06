@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.howmuch.mapper.BoardMapper">
 	<select id="getData" resultType="com.howmuch.domain.BoardVO">
-		select * from hm_board
+		select * from hm_board where bno = #{bno}
 	</select>
 	
 	<select id="getList" resultType="com.howmuch.domain.BoardVO">

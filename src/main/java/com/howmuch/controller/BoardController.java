@@ -34,8 +34,8 @@ public class BoardController {
 		private MemberService mservice;
 		
 		@GetMapping("/read")
-		public @ResponseBody BoardVO read() {
-			return service.get();
+		public @ResponseBody BoardVO read(@RequestParam(value="bno") int bno) {
+			return service.get(bno);
 		}
 		
 		@GetMapping("/readList")

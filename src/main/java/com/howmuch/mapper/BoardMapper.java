@@ -6,7 +6,7 @@ import com.howmuch.domain.BoardVO;
 
 public interface BoardMapper {
 	
-	public BoardVO getData();
+	public BoardVO getData(int bno);
 	
 	public List<BoardVO> getList();
 	
