@@ -8,7 +8,9 @@
 	</select>
 	
 	<select id="getList" resultType="com.howmuch.domain.BoardVO">
-		select * from hm_board order by bno desc
+		select hm_board.bno, hm_board.mno, hm_board.title,
+ 		hm_board.content, hm_board.writer, hm_board.bdate, hm_board.blike, hm_board.bdislike, hm_board.rcount,
+ 		hm_board.tag, hm_board.end, hm_board.suggestion, hm_board.image, hm_member.point from hm_board inner join hm_member on hm_board.mno = hm_member.mno order by bno desc;
 	</select>
 	
 	<select id="hotList" resultType="com.howmuch.domain.BoardVO">
