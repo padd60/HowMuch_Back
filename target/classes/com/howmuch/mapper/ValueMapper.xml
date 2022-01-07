@@ -12,7 +12,10 @@
 	
 	</insert>
 	<select id="getList" resultType="com.howmuch.domain.ValueVO">
-       select * from hm_value where bno = #{bno}
+       select hm_value.vno,hm_value.bno,hm_value.mno,hm_value.rater, hm_value.price, hm_value.vdate, hm_member.point
+		from hm_value inner join hm_member
+        on hm_value.rater=hm_member.nick
+        where hm_value.bno=#{bno}
    </select>
    
 	<select id="log" resultType="com.howmuch.domain.LogVO">
