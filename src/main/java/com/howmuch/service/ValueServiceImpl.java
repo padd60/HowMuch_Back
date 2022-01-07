@@ -22,7 +22,7 @@ public class ValueServiceImpl implements ValueService {
 	
 	@Override
 	public ValueVO get() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
