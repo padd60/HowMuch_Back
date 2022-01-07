@@ -129,6 +129,7 @@ public class ValueController {
 			vvo.setMax(0);
 			vvo.setMin(0);
 			bvo.setEnd(1);
+			bservice.checkEnd(bvo);
 			return vvo;
 		}
 		
