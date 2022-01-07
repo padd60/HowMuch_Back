@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.howmuch.mapper.LikeMapper">
+	<insert id="firstLike">
+		insert into hm_board_comment(bno, mno, checklike, checkdislike) values(#{bno}, #{mno}, 1, 0) 
+	</insert>
+	<insert id="firstDislike">
+		insert into hm_board_comment(bno, mno, checklike, checkdislike) values(#{bno}, #{mno}, 0, 1) 
+	</insert>
+	<update id="cancleLike">
+		update hm_board_comment set checklike = 0 where bno = #{bno} and mno = #{mno}
+	</update>
+	<update id="cancleDislike">
+		update hm_board_comment set checkdislike = 0 where bno = #{bno} and mno = #{mno}
+	</update>
+	<update id="secondLike">
+		update hm_board_comment set checklike = 1 where bno = #{bno} and mno = #{mno}
+	</update>
+	<update id="secondDislike">
+		update hm_board_comment set checkdislike = 1 where bno = #{bno} and mno = #{mno}
+	</update>
+	<select id="checkLike" resultType="com.howmuch.domain.BoardLikeVO">
+		select * from hm_board_comment where mno = #{mno} and bno = #{bno}
+	</select>
+	<select id="likeNumber" resultType="int">
+		select count(*) as num from hm_board_comment where bno=#{bno} and checklike=1;
+	</select>
+	<select id="dislikeNumber" resultType="int">
+		select count(*) as num from hm_board_comment where bno=#{bno} and checkdislike=1;
+	</select>
+	
+</mapper>

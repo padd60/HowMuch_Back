@@ -23,4 +23,6 @@ public interface BoardMapper {
 	public List<BoardVO> selectSearchList(String type, String keyword);
 	
 	public void checkEnd(BoardVO vo);
+	
+	public void likedislike(BoardVO vo);
 }

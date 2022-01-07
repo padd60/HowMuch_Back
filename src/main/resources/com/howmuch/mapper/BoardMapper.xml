@@ -54,4 +54,8 @@
 	<update id="checkEnd">
    		update hm_board set end = #{end} where bno = #{bno}
    	</update>
+   	
+   	<update id="likedislike">
+   		update hm_board set blike=#{blike}, bdislike=#{bdislike} where bno=#{bno}
+   	</update>
 </mapper>

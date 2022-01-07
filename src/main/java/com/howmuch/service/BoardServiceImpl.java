@@ -124,4 +124,10 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	@Override
+	public void likedislike(BoardVO vo) {
+		mapper.likedislike(vo);
+		
+	}
+
 }

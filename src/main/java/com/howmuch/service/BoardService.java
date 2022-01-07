@@ -23,4 +23,6 @@ public interface BoardService {
 	public void rcount(int bno);
 	
 	public void checkEnd(BoardVO vo);
+	
+	public void likedislike(BoardVO vo);
 }
