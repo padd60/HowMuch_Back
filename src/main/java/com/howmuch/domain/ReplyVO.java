@@ -15,4 +15,6 @@ public class ReplyVO {
 	private Date rupdate;
 	private int rlike;
 	private int rdislike;
+	
+	private int point;
 }
