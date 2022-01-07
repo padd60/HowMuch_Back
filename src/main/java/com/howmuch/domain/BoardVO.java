@@ -28,4 +28,5 @@ public class BoardVO {
 	private String type;
 	private String keyword;
 	
+	private int point;
 }
