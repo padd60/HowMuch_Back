@@ -11,4 +11,6 @@ public class LogVO {
 	private String rater;
 	private int price;
 	private Date vdate;
+	
+	private int point;
 }
