@@ -94,7 +94,13 @@ public class ValueController {
 
 	@GetMapping(value = "/cal")
 	public @ResponseBody CalculatorVO cal(@RequestParam(value = "bno") int bno) {
-
+		
+		List<ValueVO> list = service.getList(bno);
+		
+		if(list.size() < 1) {
+			return null;
+		}
+		
 		CalculatorVO cal = service.cal(bno);
 
 		cal.setAvg(Math.round(cal.getAvg()));
