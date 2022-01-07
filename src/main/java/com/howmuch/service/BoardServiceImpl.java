@@ -98,8 +98,24 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> getSearchList(String type, String keyword) {
+		
+		List<BoardVO> list = mapper.selectSearchList(type, keyword);
+		
+		if(list.size()<1) {
+			return null;
+		}
+		
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getTag() != "not") {
+				list.get(i).setTagList(list.get(i).getTag().split(","));
+			}
+			
+			if(list.get(i).getImage() != null) {
+				list.get(i).setImageList(list.get(i).getImage().split("_"));
+			}
+		}
 
-		return mapper.selectSearchList(type, keyword);
+		return list;
 	}
 	
 	@Override
