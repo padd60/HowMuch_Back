@@ -41,7 +41,7 @@ public class ValueController {
 	
 		@GetMapping("/ReadValueList")
 		public @ResponseBody List<ValueVO> readList(ValueVO pri){
-	      return service.getList(pri);
+	      return service.getList(pri.getBno());
 		}
 
 		@PostMapping(value="/RegisterValue")
@@ -58,7 +58,7 @@ public class ValueController {
 		      log.info(pri.getMno());
 		      log.info(pri.getRater());
 		      
-		      List<ValueVO> list = service.getList(pri);
+		      List<ValueVO> list = service.getList(pri.getBno());
 		      
 		      for(int i = 0; i < list.size(); i++ ) {
 		    	  if(list.get(i).getRater().equals(pri.getRater())) {
@@ -90,6 +90,16 @@ public class ValueController {
 		@GetMapping("/setPoint")
 		@PreAuthorize("isAuthenticated()")
 		public @ResponseBody CalculatorVO setpoint(BoardVO vo, Principal principal){
+			
+			List<ValueVO> check = service.getList(vo.getBno());
+			
+			if(check.size() < 1) {
+				CalculatorVO vvo = new CalculatorVO();
+				vvo.setAvg(0);
+				vvo.setMax(0);
+				vvo.setMin(0);
+				return vvo;
+			}
 			
 			CalculatorVO cal = service.cal(vo.getBno());
 			

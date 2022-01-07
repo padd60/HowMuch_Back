@@ -39,6 +39,9 @@
 			<when test="param1 != null and param1 == 'tag'">
 				 where tag like concat('%', #{param2}, '%')
 			</when>
+			<when test="param1 != null and param1 == 'content'">
+				 where content like concat('%', #{param2}, '%')
+			</when>
 		</choose>
 	</select>
 	

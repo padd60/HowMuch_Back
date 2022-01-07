@@ -10,7 +10,7 @@ public interface ValueService {
 	
 	public ValueVO get();
 	
-	public List<ValueVO> getList(ValueVO pri); 
+	public List<ValueVO> getList(int bno); 
 
 	public List<ValueVO> register(ValueVO pri);
 	

@@ -12,7 +12,7 @@ public interface ValueMapper {
 	
 	public void register(ValueVO pri);
 
-	public List<ValueVO> getList(ValueVO pri);
+	public List<ValueVO> getList(int bno);
 
 	public List<LogVO> log(int bno);
 
