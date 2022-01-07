@@ -118,7 +118,6 @@ public class ValueController {
 
 		BoardVO bvo = bservice.get(vo.getBno());
 		
-		CalculatorVO cal = service.cal(vo.getBno());
 		
 		if (user.getMno() != vo.getMno()) {
 			return null;
@@ -132,6 +131,8 @@ public class ValueController {
 			bvo.setEnd(1);
 			return vvo;
 		}
+		
+		CalculatorVO cal = service.cal(vo.getBno());
 
 
 		cal.setAvg(Math.round(cal.getAvg()));
