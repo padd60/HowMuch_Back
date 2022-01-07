@@ -113,44 +113,48 @@ public class ValueController {
 	public @ResponseBody CalculatorVO setpoint(BoardVO vo, Principal principal) {
 
 		List<ValueVO> check = service.getList(vo.getBno());
+		
+		MemberVO user = mservice.read(principal.getName());
+
+		BoardVO bvo = bservice.get(vo.getBno());
+		
+		CalculatorVO cal = service.cal(vo.getBno());
+		
+		if (user.getMno() != vo.getMno()) {
+			return null;
+		}
 
 		if (check.size() < 1) {
 			CalculatorVO vvo = new CalculatorVO();
 			vvo.setAvg(0);
 			vvo.setMax(0);
 			vvo.setMin(0);
+			bvo.setEnd(1);
 			return vvo;
 		}
 
-		CalculatorVO cal = service.cal(vo.getBno());
 
 		cal.setAvg(Math.round(cal.getAvg()));
-
-		MemberVO user = mservice.read(principal.getName());
-
-		BoardVO bvo = bservice.get(vo.getBno());
-
-		if (user.getMno() != vo.getMno()) {
-			return null;
-		}
 
 		double avg = cal.getAvg();
 
 		if (avg >= 100000000) {
 			int added = (int) (avg - 1000000) / 1000000;
-			user.setPoint(100 + added);
+			user.setPoint(user.getPoint() + 100 + added);
 		} else if (avg > 700000) {
-			user.setPoint(100);
+			user.setPoint(user.getPoint() + 100);
 		} else if (avg > 500000) {
-			user.setPoint(70);
+			user.setPoint(user.getPoint() + 70);
 		} else if (avg > 100000) {
-			user.setPoint(50);
+			user.setPoint(user.getPoint() + 50);
 		} else if (avg > 50000) {
-			user.setPoint(30);
+			user.setPoint(user.getPoint() + 30);
 		} else if (avg > 10000) {
-			user.setPoint(20);
+			user.setPoint(user.getPoint() + 20);
+		} else if (avg > 0){
+			user.setPoint(user.getPoint() + 10);
 		} else {
-			user.setPoint(10);
+			user.setPoint(user.getPoint() + 0);
 		}
 
 		bvo.setEnd(1);
