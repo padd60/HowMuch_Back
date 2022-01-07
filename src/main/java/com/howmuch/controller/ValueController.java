@@ -1,6 +1,7 @@
 package com.howmuch.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,15 @@ public class ValueController {
 		MemberVO vo = mservice.read(principal.getName());
 		
 		if(bvo.getWriter().equals(vo.getNick())) {
-			return null;
+			
+			List<ValueVO> notList = new ArrayList<ValueVO>();
+			
+			ValueVO not = new ValueVO();
+			not.setPrice(-1);
+			
+			notList.add(not);
+			
+			return notList;
 		}
 
 		pri.setMno(vo.getMno());
