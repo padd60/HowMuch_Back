@@ -193,11 +193,20 @@ public class LikeController {
 		return check;
 	}
 	
-	@GetMapping("/readed")
+	@GetMapping("/replyreaded")
 	@PreAuthorize("isAuthenticated()")
 	public @ResponseBody ReplyLikeVO readed(ReplyLikeVO vo) {
 		
 		return rlservice.checkLike(vo);
+		
+		
+	}
+	
+	@GetMapping("/readed")
+	@PreAuthorize("isAuthenticated()")
+	public @ResponseBody BoardLikeVO readed(BoardLikeVO vo) {
+		
+		return service.checkLike(vo);
 		
 		
 	}
