@@ -49,4 +49,15 @@ public class ReplyServiceImpl implements ReplyService {
 	      return mapper.getList(reply.getBno());
 	}
 
+	@Override
+	public void likedislike(ReplyVO vo) {
+		mapper.likedislike(vo);
+		
+	}
+
+	@Override
+	public ReplyVO get(int rno) {
+		
+		return mapper.getData(rno);
+	}
 }

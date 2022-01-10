@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.howmuch.mapper.ReplyMapper">
 	<select id="getData" resultType="com.howmuch.domain.ReplyVO">
-      select * from hm_reply
+      select * from hm_reply where bno = #{bno}
    </select>
 	<insert id="insert">
 		insert into hm_reply(mno, bno, replyer, rcontent) 
@@ -26,4 +26,8 @@
 	<delete id="delete">
 		delete from hm_reply where rno = #{rno}
 	</delete>
+   	
+   	<update id="likedislike">
+   		update hm_reply set rlike=#{rlike}, rdislike=#{rdislike} where rno=#{rno}
+   	</update>
 </mapper>
