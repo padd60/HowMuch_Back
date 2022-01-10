@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.howmuch.domain.BoardLikeVO;
 import com.howmuch.domain.BoardVO;
 import com.howmuch.domain.MemberVO;
+import com.howmuch.domain.ReplyLikeVO;
+import com.howmuch.domain.ReplyVO;
 import com.howmuch.service.BoardLikeService;
 import com.howmuch.service.BoardService;
 import com.howmuch.service.MemberService;
+import com.howmuch.service.ReplyLikeService;
+import com.howmuch.service.ReplyService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -28,10 +32,16 @@ public class LikeController {
 	private BoardLikeService service;
 	
 	@Setter(onMethod_ = @Autowired)
+	private ReplyLikeService rlservice;
+	
+	@Setter(onMethod_ = @Autowired)
 	private MemberService mservice;
 	
 	@Setter(onMethod_ = @Autowired)
 	private BoardService bservice;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ReplyService rservice;
 	
 	@GetMapping("/like")
 	@PreAuthorize("isAuthenticated()")
@@ -94,7 +104,68 @@ public class LikeController {
 		
 		return check;
 	}
+	
+	@GetMapping("/Rlike")
+	@PreAuthorize("isAuthenticated()")
+	public @ResponseBody ReplyLikeVO like(ReplyLikeVO vo, Principal principal){
+		
+		MemberVO user = mservice.read(principal.getName());
+		
+		ReplyLikeVO check = rlservice.checkLike(vo);
+		
+		ReplyVO reply = rservice.get(vo.getRno());
+		
+		if(check == null) {
+			rlservice.firstLike(vo);
+		}
+		else {
+			rlservice.secondLike(vo);
+			rlservice.cancleDislike(vo);
+		}
+		
+		check = rlservice.checkLike(vo);
+		
+		int likeNum = rlservice.likeNumber(vo);
+		int dislikeNum = rlservice.dislikeNumber(vo);
+		
+		reply.setRlike(likeNum);
+		reply.setRdislike(dislikeNum);
+		
+		rservice.likedislike(reply);
+		
+		return check;
+	}
 
+	@GetMapping("/Rdislike")
+	@PreAuthorize("isAuthenticated()")
+	public @ResponseBody ReplyLikeVO dislike(ReplyLikeVO vo, Principal principal){
+
+		MemberVO user = mservice.read(principal.getName());
+		
+		ReplyLikeVO check = rlservice.checkLike(vo);
+		
+		ReplyVO reply = rservice.get(vo.getRno());
+		
+		if(check == null) {
+			rlservice.firstDislike(vo);
+		}
+		else {
+			rlservice.secondDislike(vo);
+			rlservice.cancleLike(vo);
+		}
+		
+		check = rlservice.checkLike(vo);
+		
+		int likeNum = rlservice.likeNumber(vo);
+		int dislikeNum = rlservice.dislikeNumber(vo);
+		
+		reply.setRlike(likeNum);
+		reply.setRdislike(dislikeNum);
+		
+		rservice.likedislike(reply);
+		
+		return check;
+	}
 }
 
 

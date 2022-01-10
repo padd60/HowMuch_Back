@@ -18,4 +18,8 @@ public interface ReplyMapper {
 	
 	public List<ReplyVO> getList(int bno);
 
+	public void likedislike(ReplyVO vo);
+
+	public ReplyVO getData(int rno);
+
 }
