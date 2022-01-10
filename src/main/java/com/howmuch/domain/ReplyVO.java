@@ -13,8 +13,8 @@ public class ReplyVO {
 	private String rcontent;
 	private Date rdate;
 	private Date rupdate;
-	private int rlike;
-	private int rdislike;
+	private int relike;
+	private int redislike;
 	
 	private int point;
 }

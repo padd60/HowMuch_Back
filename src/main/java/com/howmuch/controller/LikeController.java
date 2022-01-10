@@ -57,7 +57,12 @@ public class LikeController {
 			service.firstLike(vo);
 		}
 		else {
-			service.secondLike(vo);
+			if(check.getChecklike() == 1) {
+				service.cancleLike(vo);
+			}
+			else {
+				service.secondLike(vo);
+			}
 			service.cancleDislike(vo);
 		}
 		
@@ -88,7 +93,12 @@ public class LikeController {
 			service.firstDislike(vo);
 		}
 		else {
-			service.secondDislike(vo);
+			if(check.getCheckdislike() == 1) {
+				service.cancleDislike(vo);
+			}
+			else {
+				service.secondDislike(vo);
+			}
 			service.cancleLike(vo);
 		}
 		
@@ -113,13 +123,20 @@ public class LikeController {
 		
 		ReplyLikeVO check = rlservice.checkLike(vo);
 		
+		log.info(check);
+		
 		ReplyVO reply = rservice.get(vo.getRno());
 		
 		if(check == null) {
 			rlservice.firstLike(vo);
 		}
 		else {
-			rlservice.secondLike(vo);
+			if(check.getRchecklike() == 1) {
+				rlservice.cancleLike(vo);
+			}
+			else {
+				rlservice.secondLike(vo);
+			}
 			rlservice.cancleDislike(vo);
 		}
 		
@@ -128,8 +145,8 @@ public class LikeController {
 		int likeNum = rlservice.likeNumber(vo);
 		int dislikeNum = rlservice.dislikeNumber(vo);
 		
-		reply.setRlike(likeNum);
-		reply.setRdislike(dislikeNum);
+		reply.setRelike(likeNum);
+		reply.setRedislike(dislikeNum);
 		
 		rservice.likedislike(reply);
 		
@@ -154,7 +171,12 @@ public class LikeController {
 			rlservice.firstDislike(vo);
 		}
 		else {
-			rlservice.secondDislike(vo);
+			if(check.getRcheckdislike() == 1) {
+				rlservice.cancleDislike(vo);
+			}
+			else {
+				rlservice.secondDislike(vo);
+			}
 			rlservice.cancleLike(vo);
 		}
 		
@@ -163,8 +185,8 @@ public class LikeController {
 		int likeNum = rlservice.likeNumber(vo);
 		int dislikeNum = rlservice.dislikeNumber(vo);
 		
-		reply.setRlike(likeNum);
-		reply.setRdislike(dislikeNum);
+		reply.setRelike(likeNum);
+		reply.setRedislike(dislikeNum);
 		
 		rservice.likedislike(reply);
 		
