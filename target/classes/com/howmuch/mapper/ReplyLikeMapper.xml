@@ -4,10 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.howmuch.mapper.ReplyLikeMapper">
 	<insert id="firstLike">
-		insert into hm_reply_comment(rno, mno, rchecklike, rcheckdislike) values(#{rno}, #{mno}, 1, 0) 
+		insert into hm_reply_comment(bno, rno, mno, rchecklike, rcheckdislike) values(#{bno}, #{rno}, #{mno}, 1, 0) 
 	</insert>
 	<insert id="firstDislike">
-		insert into hm_reply_comment(rno, mno, rhecklike, rcheckdislike) values(#{rno}, #{mno}, 0, 1) 
+		insert into hm_reply_comment(bno, rno, mno, rhecklike, rcheckdislike) values(#{bno}, #{rno}, #{mno}, 0, 1) 
 	</insert>
 	<update id="cancleLike">
 		update hm_reply_comment set rchecklike = 0 where rno = #{rno} and mno = #{mno}
