@@ -107,7 +107,7 @@ public class LikeController {
 	
 	@GetMapping("/Rlike")
 	@PreAuthorize("isAuthenticated()")
-	public @ResponseBody ReplyLikeVO like(ReplyLikeVO vo, Principal principal){
+	public @ResponseBody ReplyLikeVO Rlike(ReplyLikeVO vo, Principal principal){
 		
 		MemberVO user = mservice.read(principal.getName());
 		
@@ -138,7 +138,7 @@ public class LikeController {
 
 	@GetMapping("/Rdislike")
 	@PreAuthorize("isAuthenticated()")
-	public @ResponseBody ReplyLikeVO dislike(ReplyLikeVO vo, Principal principal){
+	public @ResponseBody ReplyLikeVO Rdislike(ReplyLikeVO vo, Principal principal){
 
 		MemberVO user = mservice.read(principal.getName());
 		
