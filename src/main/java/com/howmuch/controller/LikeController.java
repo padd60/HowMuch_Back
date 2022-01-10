@@ -142,7 +142,11 @@ public class LikeController {
 
 		MemberVO user = mservice.read(principal.getName());
 		
+		log.info(user);
+		
 		ReplyLikeVO check = rlservice.checkLike(vo);
+		
+		log.info(check);
 		
 		ReplyVO reply = rservice.get(vo.getRno());
 		

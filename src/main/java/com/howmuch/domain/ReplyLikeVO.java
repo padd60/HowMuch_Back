@@ -7,7 +7,6 @@ public class ReplyLikeVO {
 	private int rcno;
 	private int rno;
 	private int mno;
-	private int bno;
 	private int rchecklike;
 	private int rcheckdislike;
 }
