@@ -4,30 +4,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.howmuch.mapper.ReplyLikeMapper">
 	<insert id="firstLike">
-		insert into hm_reply_comment(rno, mno, checklike, checkdislike) values(#{rno}, #{mno}, 1, 0) 
+		insert into hm_reply_comment(rno, mno, rchecklike, rcheckdislike) values(#{rno}, #{mno}, 1, 0) 
 	</insert>
 	<insert id="firstDislike">
-		insert into hm_reply_comment(rno, mno, checklike, checkdislike) values(#{rno}, #{mno}, 0, 1) 
+		insert into hm_reply_comment(rno, mno, rhecklike, rcheckdislike) values(#{rno}, #{mno}, 0, 1) 
 	</insert>
 	<update id="cancleLike">
-		update hm_reply_comment set checklike = 0 where rno = #{rno} and mno = #{mno}
+		update hm_reply_comment set rchecklike = 0 where rno = #{rno} and mno = #{mno}
 	</update>
 	<update id="cancleDislike">
-		update hm_reply_comment set checkdislike = 0 where rno = #{rno} and mno = #{mno}
+		update hm_reply_comment set rcheckdislike = 0 where rno = #{rno} and mno = #{mno}
 	</update>
 	<update id="secondLike">
-		update hm_reply_comment set checklike = 1 where rno = #{rno} and mno = #{mno}
+		update hm_reply_comment set rchecklike = 1 where rno = #{rno} and mno = #{mno}
 	</update>
 	<update id="secondDislike">
-		update hm_reply_comment set checkdislike = 1 where rno = #{rno} and mno = #{mno}
+		update hm_reply_comment set rcheckdislike = 1 where rno = #{rno} and mno = #{mno}
 	</update>
 	<select id="checkLike" resultType="com.howmuch.domain.ReplyLikeVO">
 		select * from hm_reply_comment where mno = #{mno} and rno = #{rno}
 	</select>
 	<select id="likeNumber" resultType="int">
-		select count(*) as num from hm_reply_comment where rno=#{rno} and checklike=1;
+		select count(*) as num from hm_reply_comment where rno=#{rno} and rchecklike=1;
 	</select>
 	<select id="dislikeNumber" resultType="int">
-		select count(*) as num from hm_reply_comment where rno=#{rno} and checkdislike=1;
+		select count(*) as num from hm_reply_comment where rno=#{rno} and rcheckdislike=1;
 	</select>
 </mapper>
