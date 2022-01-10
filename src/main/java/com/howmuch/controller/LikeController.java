@@ -195,7 +195,14 @@ public class LikeController {
 	
 	@GetMapping("/replyreaded")
 	@PreAuthorize("isAuthenticated()")
-	public @ResponseBody ReplyLikeVO readed(ReplyLikeVO vo) {
+	public @ResponseBody ReplyLikeVO rreaded(int bno, Principal principal) {
+		
+		MemberVO user = mservice.read(principal.getName());
+		
+		ReplyLikeVO vo = new ReplyLikeVO();
+		vo.setBno(bno);
+		vo.setMno(user.getMno());
+		
 		
 		return rlservice.checkLike(vo);
 		
@@ -204,7 +211,14 @@ public class LikeController {
 	
 	@GetMapping("/readed")
 	@PreAuthorize("isAuthenticated()")
-	public @ResponseBody BoardLikeVO readed(BoardLikeVO vo) {
+	public @ResponseBody BoardLikeVO readed(int bno, Principal principal) {
+		
+		MemberVO user = mservice.read(principal.getName());
+		
+		BoardLikeVO vo = new BoardLikeVO();
+		vo.setBno(bno);
+		vo.setMno(user.getMno());
+		
 		
 		return service.checkLike(vo);
 		
