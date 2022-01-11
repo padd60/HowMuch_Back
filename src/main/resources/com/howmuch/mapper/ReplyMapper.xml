@@ -12,7 +12,7 @@
 	
 	</insert>
 	<select id="getList" resultType="com.howmuch.domain.ReplyVO">
-       select * from hm_reply inner join hm_member where hm_reply.bno=#{bno};
+       select * from hm_reply left join hm_member on hm_reply.mno=hm_member.mno where hm_reply.bno=#{bno};
    </select>
    
 	<update id="update">
