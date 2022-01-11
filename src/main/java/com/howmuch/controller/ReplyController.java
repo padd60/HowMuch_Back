@@ -34,8 +34,8 @@ public class ReplyController {
 		private MemberService mservice;
 	 
 		@GetMapping("/ReadReply")
-	   public @ResponseBody ReplyVO get() {
-			return service.get();
+	   public @ResponseBody ReplyVO get(@RequestParam(value="rno") int rno) {
+			return service.get(rno);
 	   }
 	   
 	   @GetMapping("/ReadReplyList")
