@@ -19,8 +19,18 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public BoardVO get(int bno) {
+		
+		BoardVO vo = mapper.getData(bno);
+		
+		if(vo.getTag() != "not") {
+			vo.setTagList(vo.getTag().split(","));
+		}
+		
+		if(vo.getImage() != null) {
+			vo.setImageList(vo.getImage().split("_"));
+		}
 
-		return mapper.getData(bno);
+		return vo;
 	}
 
 	@Override
