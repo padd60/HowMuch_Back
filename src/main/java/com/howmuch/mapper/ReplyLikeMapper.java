@@ -30,5 +30,8 @@ public interface ReplyLikeMapper {
 	
 	// 게시물 좋아요 숫자
 	public int dislikeNumber(ReplyLikeVO vo);
+	
+	// 게시물 삭제시 실행
+	public void BoardDelete(int bno);
 
 }

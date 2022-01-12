@@ -18,4 +18,6 @@ public interface ValueMapper {
 
 	public CalculatorVO cal(int bno);
 	
+	public void BoardDelete(int bno);
+	
 }

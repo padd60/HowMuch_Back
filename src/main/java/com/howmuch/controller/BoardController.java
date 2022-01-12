@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.howmuch.domain.BoardVO;
 import com.howmuch.domain.MemberVO;
+import com.howmuch.service.BoardLikeService;
 import com.howmuch.service.BoardService;
 import com.howmuch.service.MemberService;
+import com.howmuch.service.ReplyLikeService;
+import com.howmuch.service.ReplyService;
+import com.howmuch.service.ValueService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -32,6 +36,18 @@ public class BoardController {
 	
 	@Setter(onMethod_ = @Autowired)
 	private MemberService mservice;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ReplyService rservice;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ReplyLikeService rlservice;
+	
+	@Setter(onMethod_ = @Autowired)
+	private BoardLikeService blservice;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ValueService vservice;
 	
 	@GetMapping("/read")
 	public @ResponseBody BoardVO read(@RequestParam(value="bno") int bno) {
@@ -102,8 +118,13 @@ public class BoardController {
 	      if(!board.getWriter().equals(vo.getNick())) {
 	    	  return service.getList();
 	      }
-		
-		return service.delete(board);
+	     
+	     rlservice.BoardDelete(board.getBno());
+	     blservice.BoardDelete(board.getBno());
+	     vservice.BoardDelete(board.getBno());
+	     rservice.BoardDelete(board.getBno());
+	    
+		 return service.delete(board);
 		
 	}
 	

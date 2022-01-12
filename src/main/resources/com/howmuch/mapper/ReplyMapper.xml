@@ -27,4 +27,9 @@
    	<update id="likedislike">
    		update hm_reply set relike=#{relike}, redislike=#{redislike} where rno=#{rno}
    	</update>
+   	
+   	<delete id="BoardDelete">
+		delete from hm_reply where bno = #{bno}
+	</delete>
+   	
 </mapper>

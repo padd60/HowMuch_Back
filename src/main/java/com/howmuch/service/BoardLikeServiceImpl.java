@@ -68,4 +68,11 @@ public class BoardLikeServiceImpl implements BoardLikeService {
 		return mapper.dislikeNumber(vo);
 	}
 
+	@Override
+	public void BoardDelete(int bno) {
+		mapper.BoardDelete(bno);
+		
+		
+	}
+
 }

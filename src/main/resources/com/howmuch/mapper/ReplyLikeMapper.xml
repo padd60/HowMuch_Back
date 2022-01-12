@@ -30,4 +30,7 @@
 	<select id="dislikeNumber" resultType="int">
 		select count(*) as num from hm_reply_comment where rno=#{rno} and rcheckdislike=1;
 	</select>
+	<delete id="BoardDelete">
+		delete from hm_reply_comment where bno = #{bno}
+	</delete>
 </mapper>

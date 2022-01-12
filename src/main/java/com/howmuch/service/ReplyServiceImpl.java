@@ -60,4 +60,11 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		return mapper.getData(rno);
 	}
+
+	@Override
+	public void BoardDelete(int bno) {
+		
+		mapper.BoardDelete(bno);
+		
+	}
 }

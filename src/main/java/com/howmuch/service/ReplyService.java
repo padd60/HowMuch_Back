@@ -20,4 +20,6 @@ public interface ReplyService {
 	public void likedislike(ReplyVO vo);
 
 	public ReplyVO get(int rno);
+	
+	public void BoardDelete(int bno);
 }

@@ -68,4 +68,11 @@ public class ReplyLikeServiceImpl implements ReplyLikeService{
 		return mapper.dislikeNumber(vo);
 	}
 
+	@Override
+	public void BoardDelete(int bno) {
+		
+		mapper.BoardDelete(bno);
+		
+	}
+
 }

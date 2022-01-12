@@ -29,4 +29,8 @@
 		select min(price) as min, max(price) as max, avg(price) as avg from hm_value where bno=#{bno}
 	</select>
 	
+	<delete id="BoardDelete">
+		delete from hm_value where bno = #{bno}
+	</delete>
+	
 </mapper>

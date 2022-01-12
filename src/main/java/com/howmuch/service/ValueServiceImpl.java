@@ -51,6 +51,14 @@ public class ValueServiceImpl implements ValueService {
 		return mapper.log(bno);
 	}
 
+	@Override
+	public void BoardDelete(int bno) {
+		
+		mapper.BoardDelete(bno);
+		
+		
+	}
+
 	
 
 }

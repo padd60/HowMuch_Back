@@ -29,5 +29,7 @@ public interface ReplyLikeService {
 	
 	// 게시물 좋아요 숫자
 	public int dislikeNumber(ReplyLikeVO vo);
+	
+	public void BoardDelete(int bno);
 
 }

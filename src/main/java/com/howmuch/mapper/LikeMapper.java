@@ -30,5 +30,7 @@ public interface LikeMapper {
 	
 	// 게시물 좋아요 숫자
 	public int dislikeNumber(BoardLikeVO vo);
+	
+	public void BoardDelete(int bno);
 
 }
