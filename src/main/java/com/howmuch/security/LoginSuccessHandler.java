@@ -28,7 +28,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {@Overr
 		});
 		
 		if(roleNames.contains("ROLE_USER")) {
-			response.sendRedirect("http://localhost:3000/");
+			response.sendRedirect("/");
 			return;
 		}
 		

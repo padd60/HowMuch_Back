@@ -16,7 +16,7 @@
 	<!-- test -->
 	<security:http auto-config="true" use-expressions="true">
 		<!-- <security:csrf disabled="true" /> -->
-		<security:form-login login-page="http://localhost:3000/login" authentication-success-handler-ref="customLoginSuccess"  />
+		<security:form-login login-page="/login" authentication-success-handler-ref="customLoginSuccess"  />
 		<security:logout invalidate-session="true" delete-cookies="remember-me,JSESSION_ID" />
 		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800" />
 		<security:csrf token-repository-ref="tokenRepository"/>
