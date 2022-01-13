@@ -22,4 +22,6 @@ public interface ReplyService {
 	public ReplyVO get(int rno);
 	
 	public void BoardDelete(int bno);
+	
+	public void ReplyDelete(int rno);
 }

@@ -31,5 +31,9 @@
    	<delete id="BoardDelete">
 		delete from hm_reply where bno = #{bno}
 	</delete>
+	
+	<delete id="ReplyDelete">
+		delete from hm_reply_comment where rno=#{rno}
+	</delete>
    	
 </mapper>

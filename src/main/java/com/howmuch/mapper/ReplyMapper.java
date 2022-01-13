@@ -23,5 +23,7 @@ public interface ReplyMapper {
 	public ReplyVO getData(int rno);
 	
 	public void BoardDelete(int bno);
+	
+	public void ReplyDelete(int rno);
 
 }

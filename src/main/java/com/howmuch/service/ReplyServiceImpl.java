@@ -67,4 +67,11 @@ public class ReplyServiceImpl implements ReplyService {
 		mapper.BoardDelete(bno);
 		
 	}
+
+	@Override
+	public void ReplyDelete(int rno) {
+		
+		mapper.ReplyDelete(rno);
+		
+	}
 }

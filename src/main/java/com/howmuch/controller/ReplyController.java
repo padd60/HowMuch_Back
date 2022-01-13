@@ -81,7 +81,7 @@ public class ReplyController {
 	    	  return service.getList(reply.getBno());
 	      }
 	      
-	      rlservice.BoardDelete(reply.getBno());
+	      service.ReplyDelete(reply.getRno());
 	      
 	      return service.delete(reply);
 	   }
