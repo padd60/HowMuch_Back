@@ -18,7 +18,7 @@ public class BoardVO {
 	private String[] tagList;
 	private String tag;
 	private int end;
-	private int suggestion;
+	private long suggestion;
 	
 	// 첨부파일 이미지
 	private String[] imageList;

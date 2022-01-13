@@ -10,7 +10,7 @@ public class ValueVO {
 	private int bno;
 	private int mno;
 	private String rater;
-	private int price;
+	private long price;
 	private Date vdate;
 	
 	private int point;
