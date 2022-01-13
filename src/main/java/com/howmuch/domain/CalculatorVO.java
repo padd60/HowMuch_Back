@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class CalculatorVO {
 	
-	private int min;
-	private int max;
+	private long min;
+	private long max;
 	private double avg;
 	
 }

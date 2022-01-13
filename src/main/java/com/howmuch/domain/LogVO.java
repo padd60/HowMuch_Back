@@ -9,7 +9,7 @@ public class LogVO {
 	
 	private int bno;
 	private String rater;
-	private int price;
+	private long price;
 	private Date vdate;
 	
 	private int point;
