@@ -141,6 +141,8 @@ public class ValueController {
 		double avg = cal.getAvg();
 
 		if (avg >= 100000000) {
+			user.setPoint(user.getPoint() + 250);
+		} else if (avg > 1000000) {
 			int added = (int) (avg - 1000000) / 1000000;
 			user.setPoint(user.getPoint() + 100 + added);
 		} else if (avg > 700000) {
