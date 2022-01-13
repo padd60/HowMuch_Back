@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.howmuch.domain.MemberVO;
 import com.howmuch.domain.ReplyVO;
 import com.howmuch.service.MemberService;
+import com.howmuch.service.ReplyLikeService;
 import com.howmuch.service.ReplyService;
 
 import lombok.Setter;
@@ -32,6 +33,9 @@ public class ReplyController {
 		
 		@Setter(onMethod_ = @Autowired)
 		private MemberService mservice;
+		
+		@Setter(onMethod_ = @Autowired)
+		private ReplyLikeService rlservice;
 	 
 		@GetMapping("/ReadReply")
 	   public @ResponseBody ReplyVO get(@RequestParam(value="rno") int rno) {
@@ -76,6 +80,9 @@ public class ReplyController {
 	      if(!reply.getReplyer().equals(vo.getNick())) {
 	    	  return service.getList(reply.getBno());
 	      }
+	      
+	      rlservice.BoardDelete(reply.getBno());
+	      
 	      return service.delete(reply);
 	   }
 
