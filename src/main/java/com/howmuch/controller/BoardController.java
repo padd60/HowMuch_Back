@@ -93,8 +93,6 @@ public class BoardController {
 		vo.setWriter(user.getNick());
 		vo.setMno(user.getMno());
 		
-		log.info(user.getMno());
-		
 		// 태그설정
 		if(vo.getTagList() != null) {
 			vo.setTag(String.join(",", vo.getTagList()));
@@ -113,7 +111,6 @@ public class BoardController {
 	public @ResponseBody List<BoardVO> delete(BoardVO board, Principal principal){
 		
 		MemberVO vo = mservice.read(principal.getName());
-		log.info(vo);
 		
 	      if(!board.getWriter().equals(vo.getNick())) {
 	    	  return service.getList();
